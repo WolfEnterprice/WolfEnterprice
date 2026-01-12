@@ -1,0 +1,383 @@
+---
+/**
+ * Componente Contact - Formulario de contacto y CTAs
+ */
+import { contactService } from '../services/contactService';
+
+const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero más información sobre sus servicios');
+const contactEmail = contactService.getEmail();
+---
+
+<section id="contacto" class="section contact-section parallax-section">
+  <div class="contact-background parallax-slow"></div>
+  <div class="container">
+    <div class="contact-header">
+      <h2 class="section-title">¿Listo para Crecer Digitalmente?</h2>
+      <p class="section-subtitle">
+        Estamos aquí para ayudarte. Contáctanos hoy y descubre cómo podemos transformar 
+        tu presencia digital. Ya sea que tengas una idea clara o solo estés comenzando, 
+        estamos listos para escucharte y crear algo increíble juntos.
+      </p>
+    </div>
+    <div class="contact-content parallax-fast">
+      <div class="contact-form-container animate-on-scroll">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Nombre completo</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Tu nombre"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="tu@email.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Teléfono</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="+57 300 123 4567"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              placeholder="Cuéntanos sobre tu proyecto..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
+      </div>
+      <div class="contact-cta animate-on-scroll">
+        <div class="contact-cta-icon">
+          <svg aria-hidden="true">
+            <use href="#icon-message"></use>
+          </svg>
+        </div>
+        <h3>¿Prefieres hablar directamente?</h3>
+        <p>
+          A veces es mejor conversar. Escríbenos por WhatsApp y te responderemos de inmediato. 
+          Estamos aquí para responder todas tus preguntas y ayudarte a encontrar la mejor solución para tu negocio.
+        </p>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-whatsapp btn-large"
+        >
+          Hablar por WhatsApp
+        </a>
+        <div class="contact-info">
+          <a href={`mailto:${contactEmail}`} class="contact-info-text contact-email-link">
+            <svg class="contact-info-icon" aria-hidden="true">
+              <use href="#icon-mail"></use>
+            </svg>
+            {contactEmail}
+          </a>
+          <p class="contact-info-text">
+            <svg class="contact-info-icon" aria-hidden="true">
+              <use href="#icon-clock"></use>
+            </svg>
+            Respuesta en menos de 24 horas
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ contactEmail }}>
+  // Manejo del formulario de contacto
+  const form = document.getElementById('contactForm');
+  
+  // Función para validar email
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Validar email
+      if (!validateEmail(data.email)) {
+        alert('Por favor, ingresa un email válido.');
+        return;
+      }
+      
+      // Crear el cuerpo del correo
+      const subject = `Nuevo contacto desde WolfEnterprice - ${data.name}`;
+      const body = `Hola WolfEnterprice,
+
+He visto tu sitio web y estoy interesado en tus servicios.
+
+Información de contacto:
+- Nombre: ${data.name}
+- Email: ${data.email}
+- Teléfono: ${data.phone}
+
+Mensaje:
+${data.message}
+
+---
+Este mensaje fue enviado desde el formulario de contacto de wolfenterprice.com`;
+
+      // Generar URL de mailto
+      const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Preguntar al usuario cómo prefiere contactar
+      const contactMethod = confirm('¿Prefieres contactarnos por WhatsApp?\n\n- Aceptar: Abrir WhatsApp\n- Cancelar: Abrir tu cliente de correo');
+      
+      if (contactMethod) {
+        // WhatsApp
+        const whatsappMessage = `Hola, mi nombre es ${data.name}. ${data.message}. Email: ${data.email}, Tel: ${data.phone}`;
+        const whatsappUrl = `https://wa.me/573137374108?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+      } else {
+        // Email
+        window.location.href = mailtoUrl;
+      }
+      
+      // Limpiar formulario
+      form.reset();
+      
+      // Mostrar mensaje de éxito
+      setTimeout(() => {
+        alert('¡Gracias por contactarnos! Te responderemos pronto.');
+      }, 500);
+    });
+  }
+</script>
+
+<style>
+  .contact-section {
+    background: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-background {
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    bottom: -500px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(191, 255, 0, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(100px);
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-content {
+    max-width: 1100px;
+    margin: var(--spacing-2xl) auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-form-container {
+    background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(15, 15, 15, 0.9) 100%);
+    padding: var(--spacing-2xl);
+    border-radius: 16px;
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: var(--color-bg-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1), 0 0 20px rgba(74, 158, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  .contact-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(74, 158, 255, 0.2);
+  }
+
+  .contact-cta-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto var(--spacing-md);
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.5));
+    transition: transform var(--transition-normal);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .contact-cta:hover .contact-cta-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(37, 211, 102, 0.8));
+  }
+
+  .contact-cta-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .contact-info-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .contact-cta h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .contact-cta p {
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+  }
+
+  .contact-info {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(74, 158, 255, 0.2);
+  }
+
+  .contact-info-text {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+  }
+
+  .contact-email-link:hover {
+    color: var(--color-primary);
+    transform: translateX(3px);
+  }
+
+  .btn-large {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: 1.125rem;
+  }
+
+  @media (max-width: 768px) {
+    .contact-header {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+
+    .contact-form-container {
+      padding: var(--spacing-xl);
+    }
+
+    .contact-cta {
+      padding: var(--spacing-xl);
+    }
+
+    .contact-cta-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .contact-cta h3 {
+      font-size: 1.375rem;
+    }
+
+    .contact-cta p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-form-container,
+    .contact-cta {
+      padding: var(--spacing-lg);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .btn-large {
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: 1rem;
+    }
+  }
+</style>
+

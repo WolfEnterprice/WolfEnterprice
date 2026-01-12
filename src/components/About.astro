@@ -1,0 +1,221 @@
+---
+/**
+ * Componente About - Sección "Quiénes somos"
+ */
+---
+
+<section id="nosotros" class="section about-section parallax-section">
+  <div class="about-background parallax-slow"></div>
+  <div class="container">
+    <div class="about-content parallax-fast">
+      <div class="about-text">
+        <h2 class="section-title">Quiénes Somos</h2>
+        <div class="about-intro">
+          <p class="about-lead">
+            En <strong>WolfEnterprice</strong>, entendemos que cada negocio es único. Por eso, 
+            creamos soluciones digitales personalizadas que se adaptan perfectamente a tus necesidades.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="about-card animate-on-scroll">
+            <div class="about-card-icon">
+              <svg aria-hidden="true">
+                <use href="#icon-target"></use>
+              </svg>
+            </div>
+            <h3>Nuestra Misión</h3>
+            <p>
+              Ayudar a emprendedores y empresas a alcanzar su máximo potencial digital. 
+              Creemos que cada negocio merece una presencia online profesional que realmente funcione.
+            </p>
+          </div>
+          <div class="about-card animate-on-scroll">
+            <div class="about-card-icon">
+              <svg aria-hidden="true">
+                <use href="#icon-lightning"></use>
+              </svg>
+            </div>
+            <h3>Nuestro Enfoque</h3>
+            <p>
+              Aplicamos tecnologías modernas para desarrollar sitios web de alto rendimiento, 
+              optimizados para velocidad, experiencia de usuario y posicionamiento en motores de búsqueda.
+            </p>
+          </div>
+          <div class="about-card animate-on-scroll">
+            <div class="about-card-icon">
+              <svg aria-hidden="true">
+                <use href="#icon-handshake"></use>
+              </svg>
+            </div>
+            <h3>Nuestro Compromiso</h3>
+            <p>
+              No solo construimos tu sitio web, te acompañamos en todo el proceso. Desde el diseño 
+              inicial hasta el mantenimiento continuo, estamos aquí para asegurar tu éxito digital.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    background: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-background {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    right: -250px;
+    background: radial-gradient(circle, rgba(74, 158, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    transform: translateY(-50%);
+  }
+
+  .about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-intro {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-lead {
+    font-size: 1.375rem;
+    line-height: 1.9;
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .about-lead strong {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    justify-items: center;
+  }
+
+  .about-card {
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border-radius: 20px;
+    padding: var(--spacing-2xl);
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    transition: all var(--transition-normal);
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-teal), var(--color-accent));
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
+  }
+
+  .about-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(74, 158, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(74, 158, 255, 0.2);
+  }
+
+  .about-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .about-card-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--spacing-md);
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 15px rgba(74, 158, 255, 0.5));
+  }
+
+  .about-card-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .about-card h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .about-card p {
+    color: var(--color-text-tertiary);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+  }
+
+  .about-card strong {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (max-width: 768px) {
+    .about-intro {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .about-lead {
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .about-card {
+      max-width: 100%;
+      padding: var(--spacing-xl);
+    }
+
+    .about-card-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .about-card h3 {
+      font-size: 1.375rem;
+    }
+
+    .about-card p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-card {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>
+

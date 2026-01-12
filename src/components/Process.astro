@@ -1,0 +1,214 @@
+---
+/**
+ * Componente Process - Muestra el proceso de trabajo
+ */
+import { processService } from '../services/processService';
+
+const steps = processService.getProcessSteps();
+---
+
+<section id="proceso" class="section process-section parallax-section">
+  <div class="process-background parallax-medium"></div>
+  <div class="container">
+    <div class="process-header">
+      <h2 class="section-title">Nuestro Proceso de Trabajo</h2>
+      <p class="section-subtitle">
+        Trabajamos con un método probado y transparente que garantiza resultados exitosos. 
+        Desde el primer contacto hasta el lanzamiento y más allá, te mantenemos informado en cada paso del camino.
+      </p>
+    </div>
+    <div class="process-steps">
+      {steps.map((step, index) => (
+        <div class="process-step parallax-fast animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+          <div class="process-number-wrapper">
+            <div class="process-number">{step.number}</div>
+            {index < steps.length - 1 && <div class="process-connector"></div>}
+          </div>
+          <div class="process-content">
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-section {
+    background: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-background {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 10%;
+    right: -400px;
+    background: radial-gradient(circle, rgba(74, 158, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+
+  .process-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-steps {
+    max-width: 1100px;
+    margin: var(--spacing-2xl) auto 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-step {
+    display: flex;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    align-items: start;
+    position: relative;
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    transition: all var(--transition-normal);
+  }
+
+  .process-step:hover {
+    background: rgba(74, 158, 255, 0.05);
+    transform: translateX(10px);
+  }
+
+  .process-step:last-child {
+    margin-bottom: 0;
+  }
+
+  .process-number-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-number {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-bg-primary);
+    box-shadow: 0 10px 30px rgba(74, 158, 255, 0.4);
+    position: relative;
+    z-index: 2;
+    transition: all var(--transition-normal);
+  }
+
+  .process-step:hover .process-number {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 15px 40px rgba(74, 158, 255, 0.6);
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-teal-light));
+  }
+
+  .process-step:hover .process-connector {
+    opacity: 0.6;
+    height: calc(100% + var(--spacing-2xl) + 10px);
+  }
+
+  .process-connector {
+    width: 2px;
+    height: calc(100% + var(--spacing-2xl));
+    background: linear-gradient(180deg, var(--color-primary), var(--color-teal));
+    margin-top: var(--spacing-sm);
+    opacity: 0.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-step:last-child .process-connector {
+    display: none;
+  }
+
+  .process-content {
+    flex: 1;
+    padding-top: var(--spacing-sm);
+  }
+
+  .process-content h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+  }
+
+  .process-content p {
+    color: var(--color-text-tertiary);
+    line-height: 1.85;
+    font-size: 1.0625rem;
+  }
+
+  @media (max-width: 768px) {
+    .process-header {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .process-steps {
+      margin-top: var(--spacing-xl);
+      max-width: 100%;
+    }
+
+    .process-step {
+      flex-direction: column;
+      text-align: center;
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      gap: var(--spacing-md);
+    }
+
+    .process-number-wrapper {
+      margin: 0 auto;
+    }
+
+    .process-number {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+    }
+
+    .process-connector {
+      display: none;
+    }
+
+    .process-step:hover {
+      transform: translateY(-5px);
+      background: rgba(74, 158, 255, 0.08);
+    }
+
+    .process-content h3 {
+      font-size: 1.375rem;
+    }
+
+    .process-content p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .process-step {
+      padding: var(--spacing-md);
+    }
+
+    .process-number {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+    }
+  }
+</style>
+

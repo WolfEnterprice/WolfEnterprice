@@ -1,0 +1,159 @@
+---
+/**
+ * Componente Footer - Pie de página con información de contacto
+ */
+import { contactService } from '../services/contactService';
+
+const whatsappUrl = contactService.getWhatsAppUrl();
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>WolfEnterprice</h3>
+        <p>
+          Desarrollo web profesional y soluciones digitales para hacer crecer tu
+          negocio.
+        </p>
+      </div>
+      <div class="footer-section">
+        <h4>Enlaces</h4>
+        <ul class="footer-links">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <ul class="footer-links">
+          <li>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a href="mailto:wolfenterprisedev@gmail.com">
+              wolfenterprisedev@gmail.com
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        &copy; {currentYear} WolfEnterprice. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-bg-primary);
+    border-top: 1px solid rgba(74, 158, 255, 0.2);
+    padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    margin-top: var(--spacing-3xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    opacity: 0.5;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .footer {
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+      margin-top: var(--spacing-2xl);
+    }
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.125rem;
+  }
+
+  .footer-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .footer-links {
+    list-style: none;
+  }
+
+  .footer-links li {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .footer-links a {
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+    display: inline-block;
+    position: relative;
+  }
+
+  .footer-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary);
+    transition: width var(--transition-normal);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+  }
+
+  .footer-links a:hover::before {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-bottom p {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+</style>
+

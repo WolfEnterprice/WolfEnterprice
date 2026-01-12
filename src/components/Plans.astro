@@ -1,0 +1,261 @@
+---
+/**
+ * Componente Plans - Muestra los planes de precios
+ */
+import { planService } from '../services/planService';
+
+const plans = planService.getAllPlans();
+
+const getPlanColor = (color: string) => {
+  const colors: Record<string, string> = {
+    green: 'var(--color-plan-green)', // Verde lima
+    yellow: 'var(--color-plan-yellow)', // Amarillo/dorado
+    blue: 'var(--color-plan-blue)', // Azul del lobo
+  };
+  return colors[color] || colors.blue;
+};
+---
+
+<section id="planes" class="section plans-section">
+  <div class="container">
+    <div class="plans-header">
+      <h2 class="section-title">Nuestros Planes</h2>
+      <p class="section-subtitle">
+        Elige el plan perfecto para tu negocio. Todos nuestros planes incluyen soporte personalizado 
+        y están diseñados para hacer crecer tu presencia digital de manera efectiva. 
+        Contáctanos para conocer los precios y detalles específicos de cada plan.
+      </p>
+    </div>
+    <div class="grid grid-3 plans-grid">
+      {plans.map((plan, index) => (
+        <div
+          class={`card plan-card animate-on-scroll ${plan.popular ? 'plan-popular' : ''}`}
+          style={`--plan-color: ${getPlanColor(plan.color)}; transition-delay: ${index * 0.1}s`}
+        >
+          {plan.popular && <div class="plan-badge">Más Popular</div>}
+          <div class="plan-header">
+            <h3>{plan.name}</h3>
+            <p class="plan-description">{plan.description}</p>
+          </div>
+          <ul class="plan-features">
+            {plan.features.map((feature) => (
+              <li>
+                <span class="check-icon">✓</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a href="#contacto" class="btn btn-primary plan-cta">
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .plans-section {
+    background: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plans-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .plans-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .plans-grid {
+    margin-top: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .plan-card {
+    position: relative;
+    padding: var(--spacing-2xl);
+    transition: all var(--transition-normal);
+    background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(21, 21, 32, 0.95) 100%);
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    overflow: hidden;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 25px rgba(74, 158, 255, 0.1);
+  }
+
+  .plan-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--plan-color) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+  }
+
+  .plan-card:hover::after {
+    opacity: 0.1;
+  }
+
+  .plan-popular {
+    border: 2px solid var(--plan-color);
+    box-shadow: 0 8px 40px rgba(74, 158, 255, 0.25);
+    transform: scale(1.02);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 8px 40px rgba(74, 158, 255, 0.25);
+    }
+    50% {
+      box-shadow: 0 12px 50px rgba(74, 158, 255, 0.4);
+    }
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--plan-color);
+    color: var(--color-bg-primary);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .plan-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid rgba(74, 158, 255, 0.2);
+  }
+
+  .plan-header h3 {
+    color: var(--plan-color);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .plan-description {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: var(--spacing-xl);
+    flex-grow: 1;
+    padding-top: var(--spacing-md);
+  }
+
+  .plan-features li {
+    padding: var(--spacing-md) 0;
+    color: var(--color-text-tertiary);
+    display: flex;
+    align-items: start;
+    gap: var(--spacing-md);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+  }
+
+  .plan-features li:last-child {
+    border-bottom: none;
+  }
+
+  .check-icon {
+    color: var(--plan-color);
+    font-weight: bold;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    filter: drop-shadow(0 0 4px rgba(74, 158, 255, 0.5));
+  }
+
+  .plan-cta {
+    width: 100%;
+    margin-top: var(--spacing-md);
+  }
+
+  @media (max-width: 1024px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-lg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      max-width: 100%;
+    }
+
+    .plan-popular {
+      transform: scale(1);
+    }
+
+    .plan-card {
+      max-width: 100%;
+      padding: var(--spacing-xl);
+    }
+
+    .plan-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .plan-description {
+      font-size: 0.9375rem;
+    }
+
+    .plan-features li {
+      font-size: 1rem;
+      padding: var(--spacing-sm) 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .plans-header {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .plan-card {
+      padding: var(--spacing-lg);
+    }
+
+    .plan-header {
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+    }
+  }
+</style>
+
