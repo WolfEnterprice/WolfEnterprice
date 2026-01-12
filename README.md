@@ -87,7 +87,52 @@ npm run preview
 Edita el número de WhatsApp en `src/services/contactService.ts`:
 
 ```typescript
-private readonly whatsappNumber: string = '+573001234567';
+private readonly whatsappNumber: string = '+573137374108';
+```
+
+### Proyectos desde GitHub
+
+Los proyectos se cargan automáticamente desde GitHub usando la GitHub REST API.
+
+**Configuración:**
+
+1. Edita el username de GitHub en `src/services/githubService.ts`:
+
+```typescript
+export const githubService = new GitHubService('DavidSolorza');
+```
+
+2. Para agregar múltiples usuarios, usa:
+
+```typescript
+const projects = await githubService.getMultipleUsersRepos(['DavidSolorza', 'otro-usuario']);
+```
+
+**Agregar nuevos proyectos:**
+
+Los proyectos se cargan automáticamente desde los repositorios públicos de GitHub que:
+- Tengan descripción
+- No estén archivados
+- Sean públicos
+
+**Agregar imagen de preview:**
+
+Coloca un archivo `preview.png` en la raíz de tu repositorio de GitHub. Si existe, se mostrará automáticamente en la tarjeta del proyecto.
+
+**Agregar proyecto manualmente:**
+
+En `src/components/Team.astro`, agrega proyectos manuales al array `allProjects`:
+
+```typescript
+const manualProject = {
+  id: 999999,
+  name: 'Nombre del Proyecto',
+  description: 'Descripción del proyecto',
+  language: 'TypeScript',
+  url: 'https://github.com/usuario/repo',
+  updatedAt: new Date().toISOString(),
+  previewImage: '/ruta/a/imagen.png', // Opcional
+};
 ```
 
 ### Dominio

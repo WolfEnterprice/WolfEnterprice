@@ -1,0 +1,305 @@
+---
+/**
+ * Componente ProjectCard - Tarjeta individual de proyecto
+ * Muestra información de un proyecto obtenido de GitHub
+ */
+interface Props {
+  name: string;
+  description: string;
+  language: string | null;
+  url: string;
+  previewImage?: string;
+  updatedAt?: string;
+}
+
+const { name, description, language, url, previewImage, updatedAt } = Astro.props;
+
+// Formatear fecha de actualización
+const formatDate = (dateString?: string) => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return date.toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
+
+// Obtener color del lenguaje (algunos lenguajes comunes)
+const getLanguageColor = (lang: string | null): string => {
+  if (!lang) return 'var(--color-text-muted)';
+  
+  const colors: Record<string, string> = {
+    JavaScript: '#f7df1e',
+    TypeScript: '#3178c6',
+    HTML: '#e34c26',
+    CSS: '#1572b6',
+    Python: '#3776ab',
+    Java: '#ed8b00',
+    'C++': '#00599c',
+    'C#': '#239120',
+    PHP: '#777bb4',
+    Ruby: '#cc342d',
+    Go: '#00add8',
+    Rust: '#000000',
+    Swift: '#fa7343',
+    Kotlin: '#7f52ff',
+    Vue: '#4fc08d',
+    React: '#61dafb',
+    Angular: '#dd0031',
+    Astro: '#ff5d01',
+  };
+
+  return colors[lang] || 'var(--color-primary)';
+};
+---
+
+<article class="project-card">
+  {previewImage ? (
+    <div class="project-image-wrapper">
+      <img
+        src={previewImage}
+        alt={`Preview de ${name}`}
+        class="project-image"
+        loading="lazy"
+      />
+    </div>
+  ) : (
+    <div class="project-image-placeholder">
+      <svg aria-hidden="true">
+        <use href="#icon-code"></use>
+      </svg>
+    </div>
+  )}
+  
+  <div class="project-content">
+    {language && (
+      <div class="project-language">
+        <span
+          class="language-dot"
+          style={`background-color: ${getLanguageColor(language)}`}
+        ></span>
+        <span>{language}</span>
+      </div>
+    )}
+    
+    <h3 class="project-title">{name}</h3>
+    
+    <p class="project-description">{description}</p>
+    
+    {updatedAt && (
+      <p class="project-date">
+        <svg class="project-date-icon" aria-hidden="true">
+          <use href="#icon-clock"></use>
+        </svg>
+        Actualizado: {formatDate(updatedAt)}
+      </p>
+    )}
+    
+    <div class="project-link">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-link-button"
+      >
+        Ver proyecto
+        <svg class="project-link-icon" aria-hidden="true">
+          <use href="#icon-rocket"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(21, 21, 32, 0.95) 100%);
+    border-radius: 20px;
+    padding: 0;
+    border: 1px solid rgba(74, 158, 255, 0.25);
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 25px rgba(74, 158, 255, 0.15), 0 0 0 1px rgba(74, 158, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-teal), var(--color-accent));
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    border-color: rgba(74, 158, 255, 0.5);
+    background: linear-gradient(135deg, var(--color-bg-card-hover) 0%, rgba(31, 31, 46, 0.95) 100%);
+    box-shadow: 0 25px 50px rgba(74, 158, 255, 0.3), 0 0 0 1px rgba(74, 158, 255, 0.2);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg-primary);
+  }
+
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .project-card:hover .project-image {
+    transform: scale(1.1);
+  }
+
+  .project-image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+  }
+
+  .project-image-placeholder svg {
+    width: 80px;
+    height: 80px;
+    color: var(--color-bg-primary);
+    opacity: 0.5;
+  }
+
+  .project-content {
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .project-language {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: rgba(74, 158, 255, 0.1);
+    border: 1px solid rgba(74, 158, 255, 0.2);
+    border-radius: 12px;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-md);
+    width: fit-content;
+  }
+
+  .language-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .project-title {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+  }
+
+  .project-description {
+    color: var(--color-text-tertiary);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+  }
+
+  .project-date {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .project-date-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-text-muted);
+  }
+
+  .project-link {
+    margin-top: auto;
+  }
+
+  .project-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 8px;
+    background: rgba(74, 158, 255, 0.1);
+    border: 1px solid rgba(74, 158, 255, 0.3);
+  }
+
+  .project-link-button:hover {
+    color: var(--color-text-primary);
+    background: rgba(74, 158, 255, 0.2);
+    border-color: var(--color-primary);
+    transform: translateX(5px);
+    gap: var(--spacing-sm);
+  }
+
+  .project-link-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition-fast);
+  }
+
+  .project-link-button:hover .project-link-icon {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 768px) {
+    .project-content {
+      padding: var(--spacing-lg);
+    }
+
+    .project-image-wrapper,
+    .project-image-placeholder {
+      height: 180px;
+    }
+
+    .project-title {
+      font-size: 1.375rem;
+    }
+
+    .project-description {
+      font-size: 1rem;
+    }
+  }
+</style>
+
