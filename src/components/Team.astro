@@ -13,29 +13,50 @@ interface TeamMember {
   image?: string;
 }
 
-// Obtener proyecto específico de GitHub en build time
-let streamingPlusProject: Awaited<ReturnType<typeof githubService.getSpecificRepo>> | null = null;
+// Obtener proyectos específicos de GitHub en build time
+const projectRepos = [
+  'WolfEnterprice/STREAMINGPLUS',
+  'WolfEnterprice/Sabores-Del-Monte',
+];
 
-try {
-  streamingPlusProject = await githubService.getSpecificRepo('DavidSolorza/STREAMINGPLUS');
-} catch (error) {
-  console.error('Error loading GitHub project:', error);
+let githubProjects: Awaited<ReturnType<typeof githubService.getSpecificRepo>>[] = [];
+
+// Cargar todos los proyectos
+for (const repoName of projectRepos) {
+  try {
+    const project = await githubService.getSpecificRepo(repoName);
+    if (project) {
+      githubProjects.push(project);
+    }
+  } catch (error) {
+    console.error(`Error loading GitHub project ${repoName}:`, error);
+  }
 }
 
-// Si no se pudo cargar desde GitHub, usar datos manuales como fallback
-const allProjects = streamingPlusProject
-  ? [streamingPlusProject]
-  : [
-      {
-        id: 999999,
-        name: 'Streaming Plus',
-        description: 'Plataforma de streaming moderna y escalable con integración de APIs y gestión de contenido multimedia.',
-        language: 'TypeScript',
-        url: 'https://github.com/DavidSolorza/STREAMINGPLUS',
-        updatedAt: new Date().toISOString(),
-        previewImage: undefined,
-      },
-    ];
+// Proyectos de fallback si no se pueden cargar desde GitHub
+const fallbackProjects = [
+  {
+    id: 999999,
+    name: 'Streaming Plus',
+    description: 'Plataforma de streaming moderna y escalable con integración de APIs y gestión de contenido multimedia.',
+    language: 'TypeScript',
+    url: 'https://github.com/WolfEnterprice/STREAMINGPLUS',
+    updatedAt: new Date().toISOString(),
+    previewImage: undefined,
+  },
+  {
+    id: 999998,
+    name: 'Sabores Del Monte',
+    description: 'Plataforma web para gestión y visualización de productos gastronómicos de la marca Sabores Del Monte.',
+    language: 'TypeScript',
+    url: 'https://github.com/WolfEnterprice/Sabores-Del-Monte',
+    updatedAt: new Date().toISOString(),
+    previewImage: undefined,
+  },
+];
+
+// Usar proyectos de GitHub si existen, sino usar fallback
+const allProjects = githubProjects.length > 0 ? githubProjects : fallbackProjects;
 
 const teamMembers: TeamMember[] = [
   {

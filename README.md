@@ -129,11 +129,27 @@ const manualProject = {
   name: 'Nombre del Proyecto',
   description: 'Descripción del proyecto',
   language: 'TypeScript',
-  url: 'https://github.com/usuario/repo',
+  url: 'https://github.com/WolfEnterprice/repo',
   updatedAt: new Date().toISOString(),
   previewImage: '/ruta/a/imagen.png', // Opcional
 };
 ```
+
+**Actualizar repositorios de proyectos:**
+
+Para cambiar o agregar repositorios, edita `src/components/Team.astro`:
+
+```typescript
+const projectRepos = [
+  'WolfEnterprice/STREAMINGPLUS',
+  'WolfEnterprice/Sabores-Del-Monte',
+  // Agrega más repositorios aquí
+];
+```
+
+Los proyectos actuales son:
+- **STREAMINGPLUS**: https://github.com/WolfEnterprice/STREAMINGPLUS
+- **Sabores-Del-Monte**: https://github.com/WolfEnterprice/Sabores-Del-Monte
 
 ### Dominio
 

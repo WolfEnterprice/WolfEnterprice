@@ -36,7 +36,7 @@ class GitHubService {
 
   /**
    * Obtiene un repositorio específico por nombre completo (usuario/repo)
-   * @param repoFullName - Nombre completo del repositorio (ej: "DavidSolorza/STREAMINGPLUS")
+   * @param repoFullName - Nombre completo del repositorio (ej: "WolfEnterprice/STREAMINGPLUS")
    * @returns Proyecto o null si no se encuentra
    */
   async getSpecificRepo(repoFullName: string): Promise<Project | null> {
