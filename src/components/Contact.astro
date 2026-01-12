@@ -101,6 +101,16 @@ const contactEmail = contactService.getEmail();
       </div>
     </div>
   </div>
+  
+  <!-- Modal de selección de contacto -->
+  <ContactModal
+    name=""
+    email=""
+    phone=""
+    message=""
+    whatsappUrl={initialWhatsappUrl}
+    mailtoUrl={initialMailtoUrl}
+  />
 </section>
 
 <script define:vars={{ contactEmail }}>
@@ -143,29 +153,39 @@ ${data.message}
 ---
 Este mensaje fue enviado desde el formulario de contacto de wolfenterprice.com`;
 
-      // Generar URL de mailto
+      // Generar URLs
       const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const whatsappMessage = `Hola, mi nombre es ${data.name}. ${data.message}. Email: ${data.email}, Tel: ${data.phone}`;
+      const whatsappUrl = `https://wa.me/573137374108?text=${encodeURIComponent(whatsappMessage)}`;
       
-      // Preguntar al usuario cómo prefiere contactar
-      const contactMethod = confirm('¿Prefieres contactarnos por WhatsApp?\n\n- Aceptar: Abrir WhatsApp\n- Cancelar: Abrir tu cliente de correo');
+      // Actualizar URLs en el modal si existe
+      const whatsappOption = document.getElementById('whatsappOption');
+      const emailOption = document.getElementById('emailOption');
       
-      if (contactMethod) {
-        // WhatsApp
-        const whatsappMessage = `Hola, mi nombre es ${data.name}. ${data.message}. Email: ${data.email}, Tel: ${data.phone}`;
-        const whatsappUrl = `https://wa.me/573137374108?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappUrl, '_blank');
-      } else {
-        // Email
-        window.location.href = mailtoUrl;
+      if (whatsappOption) {
+        whatsappOption.href = whatsappUrl;
+      }
+      if (emailOption) {
+        emailOption.href = mailtoUrl;
       }
       
-      // Limpiar formulario
-      form.reset();
+      // Mostrar modal
+      if (window.showContactModal) {
+        window.showContactModal();
+      } else {
+        // Fallback si el modal no está disponible
+        const contactMethod = confirm('¿Prefieres contactarnos por WhatsApp?\n\n- Aceptar: Abrir WhatsApp\n- Cancelar: Abrir tu cliente de correo');
+        if (contactMethod) {
+          window.open(whatsappUrl, '_blank');
+        } else {
+          window.location.href = mailtoUrl;
+        }
+      }
       
-      // Mostrar mensaje de éxito
+      // Limpiar formulario después de un delay
       setTimeout(() => {
-        alert('¡Gracias por contactarnos! Te responderemos pronto.');
-      }, 500);
+        form.reset();
+      }, 100);
     });
   }
 </script>
