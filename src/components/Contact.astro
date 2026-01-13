@@ -3,6 +3,7 @@
  * Componente Contact - Formulario de contacto y CTAs
  */
 import { contactService } from '../services/contactService';
+import ContactModal from './ContactModal.astro';
 
 const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero más información sobre sus servicios');
 const contactEmail = contactService.getEmail();
@@ -103,14 +104,7 @@ const contactEmail = contactService.getEmail();
   </div>
   
   <!-- Modal de selección de contacto -->
-  <ContactModal
-    name=""
-    email=""
-    phone=""
-    message=""
-    whatsappUrl={initialWhatsappUrl}
-    mailtoUrl={initialMailtoUrl}
-  />
+  <ContactModal />
 </section>
 
 <script define:vars={{ contactEmail }}>

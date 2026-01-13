@@ -6,6 +6,7 @@
 
 <nav class="navigation" id="mainNav">
   <div class="nav-background"></div>
+  <div class="nav-overlay" id="navOverlay"></div>
   <div class="container">
     <div class="nav-content">
       <a href="/" class="nav-logo">
@@ -20,7 +21,7 @@
           <strong>Wolf</strong><span class="nav-logo-accent">Enterprice</span>
         </span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -57,21 +58,112 @@
   });
 
   // Menú hamburguesa para móviles
+  const navOverlay = document.getElementById('navOverlay');
+  
   if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-links-open');
-      navToggle.classList.toggle('nav-toggle-active');
-      document.body.style.overflow = navLinks.classList.contains('nav-links-open') ? 'hidden' : '';
+    let isMenuOpen = false;
+    let scrollPosition = 0;
+    
+    function openMenu() {
+      if (isMenuOpen) return;
+      
+      isMenuOpen = true;
+      scrollPosition = window.pageYOffset;
+      
+      // Asegurar que el menú sea visible con estilos inline
+      navLinks.style.display = 'flex';
+      navLinks.style.right = '0';
+      navLinks.style.visibility = 'visible';
+      navLinks.style.opacity = '1';
+      navLinks.classList.add('nav-links-open');
+      
+      navToggle.classList.add('nav-toggle-active');
+      navToggle.setAttribute('aria-expanded', 'true');
+      nav?.classList.add('nav-menu-open');
+      
+      if (navOverlay) {
+        navOverlay.style.opacity = '1';
+        navOverlay.style.visibility = 'visible';
+        navOverlay.style.pointerEvents = 'all';
+        navOverlay.classList.add('nav-overlay-active');
+      }
+      
+      // Prevenir scroll del body
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPosition}px`;
+      document.body.style.width = '100%';
+    }
+    
+    function closeMenu() {
+      if (!isMenuOpen) return;
+      
+      isMenuOpen = false;
+      
+      // Ocultar menú con estilos inline
+      navLinks.style.right = '-100%';
+      navLinks.style.visibility = 'hidden';
+      navLinks.style.opacity = '0';
+      navLinks.classList.remove('nav-links-open');
+      
+      navToggle.classList.remove('nav-toggle-active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      nav?.classList.remove('nav-menu-open');
+      
+      if (navOverlay) {
+        navOverlay.style.opacity = '0';
+        navOverlay.style.visibility = 'hidden';
+        navOverlay.style.pointerEvents = 'none';
+        navOverlay.classList.remove('nav-overlay-active');
+      }
+      
+      // Restaurar scroll del body
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      
+      window.scrollTo(0, scrollPosition);
+    }
+    
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      if (isMenuOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Cerrar menú al hacer clic en el overlay
+    navOverlay?.addEventListener('click', () => {
+      closeMenu();
     });
 
     // Cerrar menú al hacer clic en un enlace
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('nav-links-open');
-        navToggle.classList.remove('nav-toggle-active');
-        document.body.style.overflow = '';
+        // Pequeño delay para permitir la animación
+        setTimeout(() => {
+          closeMenu();
+        }, 100);
       });
     });
+
+    // Cerrar menú con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      }
+    });
+
+    // Prevenir scroll cuando el menú está abierto (solo en el overlay)
+    navOverlay?.addEventListener('touchmove', (e) => {
+      if (isMenuOpen) {
+        e.preventDefault();
+      }
+    }, { passive: false });
   }
 </script>
 
@@ -135,6 +227,12 @@
     align-items: center;
     position: relative;
     z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .nav-content {
+      overflow: visible;
+    }
   }
 
   .nav-logo {
@@ -202,7 +300,8 @@
     border: none;
     cursor: pointer;
     padding: var(--spacing-xs);
-    z-index: 1001;
+    z-index: 1004;
+    position: relative;
   }
 
   .nav-toggle span {
@@ -230,6 +329,8 @@
     list-style: none;
     gap: var(--spacing-md);
     align-items: center;
+    margin: 0;
+    padding: 0;
   }
 
   .nav-link {
@@ -312,6 +413,18 @@
   }
 
   @media (max-width: 768px) {
+    .navigation {
+      overflow: visible;
+    }
+
+    .navigation .container {
+      overflow: visible;
+    }
+
+    .nav-content {
+      overflow: visible;
+    }
+
     .nav-toggle {
       display: flex;
     }
@@ -330,31 +443,57 @@
       height: 16px;
     }
 
-    .nav-links {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 280px;
-      height: 100vh;
-      background: rgba(10, 10, 15, 0.98);
-      backdrop-filter: blur(20px);
-      flex-direction: column;
-      align-items: flex-start;
-      padding: var(--spacing-3xl) var(--spacing-xl);
-      gap: var(--spacing-lg);
-      border-left: 1px solid rgba(74, 158, 255, 0.2);
-      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-      transition: right var(--transition-normal);
-      z-index: 1000;
-      overflow-y: auto;
-    }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height para móviles */
+    background: var(--color-bg-card);
+    backdrop-filter: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-3xl) var(--spacing-xl);
+    gap: var(--spacing-lg);
+    border-left: 2px solid rgba(74, 158, 255, 0.5);
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex !important;
+    margin: 0;
+    list-style: none;
+  }
 
-    .nav-links-open {
-      right: 0;
-    }
+  .nav-links-open {
+    right: 0 !important;
+  }
+
+  /* Overlay de fondo cuando el menú está abierto */
+  .nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+    z-index: 9998;
+    backdrop-filter: none;
+    visibility: hidden;
+  }
 
     .nav-links li {
       width: 100%;
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     .nav-link {
@@ -363,6 +502,17 @@
       width: 100%;
       display: block;
       border-radius: 8px;
+      color: var(--color-text-primary);
+      font-weight: var(--font-weight-semibold);
+      transition: all 0.2s ease;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link:hover {
+      background: rgba(74, 158, 255, 0.2);
+      color: var(--color-primary-light);
+      transform: translateX(5px);
+      text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
     }
 
     .nav-link::before {
@@ -375,6 +525,14 @@
       padding: var(--spacing-sm) var(--spacing-md);
       font-size: 1rem;
       margin-top: var(--spacing-md);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+      color: var(--color-bg-primary);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
     }
   }
 
@@ -382,6 +540,7 @@
     .nav-links {
       width: 100%;
       right: -100%;
+      padding-top: calc(var(--spacing-3xl) + 60px); /* Espacio para el navbar */
     }
 
     .nav-logo-text {
@@ -389,4 +548,5 @@
     }
   }
 </style>
+
 
