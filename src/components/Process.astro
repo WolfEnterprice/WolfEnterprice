@@ -155,20 +155,20 @@ const steps = processService.getProcessSteps();
 
   @media (max-width: 768px) {
     .process-header {
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
     }
 
     .process-steps {
-      margin-top: var(--spacing-xl);
+      margin-top: var(--spacing-md);
       max-width: 100%;
     }
 
     .process-step {
       flex-direction: column;
       text-align: center;
-      padding: var(--spacing-lg);
-      margin-bottom: var(--spacing-xl);
-      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      gap: var(--spacing-sm);
     }
 
     .process-number-wrapper {
@@ -176,9 +176,9 @@ const steps = processService.getProcessSteps();
     }
 
     .process-number {
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
+      width: 56px;
+      height: 56px;
+      font-size: 1.375rem;
     }
 
     .process-connector {
@@ -191,23 +191,42 @@ const steps = processService.getProcessSteps();
     }
 
     .process-content h3 {
-      font-size: 1.375rem;
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-xs);
     }
 
     .process-content p {
-      font-size: 1rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
     }
   }
 
   @media (max-width: 480px) {
+    .process-header {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .process-steps {
+      margin-top: var(--spacing-sm);
+    }
+
     .process-step {
-      padding: var(--spacing-md);
+      padding: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
     }
 
     .process-number {
-      width: 50px;
-      height: 50px;
-      font-size: 1.25rem;
+      width: 48px;
+      height: 48px;
+      font-size: 1.125rem;
+    }
+
+    .process-content h3 {
+      font-size: 1.125rem;
+    }
+
+    .process-content p {
+      font-size: 0.875rem;
     }
   }
 </style>

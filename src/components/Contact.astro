@@ -347,50 +347,85 @@ Este mensaje fue enviado desde el formulario de contacto de wolfenterprice.com`;
 
   @media (max-width: 768px) {
     .contact-header {
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
     }
 
     .contact-content {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-xl);
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
     }
 
     .contact-form-container {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-md);
     }
 
     .contact-cta {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-md);
     }
 
     .contact-cta-icon {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
+      margin-bottom: var(--spacing-sm);
     }
 
     .contact-cta h3 {
-      font-size: 1.375rem;
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-sm);
     }
 
     .contact-cta p {
-      font-size: 1rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-info {
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
     }
   }
 
   @media (max-width: 480px) {
+    .contact-header {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-content {
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
+    }
+
     .contact-form-container,
     .contact-cta {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-sm);
+    }
+
+    .contact-cta-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .contact-cta h3 {
+      font-size: 1.125rem;
+    }
+
+    .contact-cta p {
+      font-size: 0.875rem;
     }
 
     .form-group {
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-xs);
     }
 
     .btn-large {
-      padding: var(--spacing-sm) var(--spacing-md);
-      font-size: 1rem;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: 0.9375rem;
     }
   }
 </style>

@@ -1,0 +1,204 @@
+---
+/**
+ * Componente FloatingNav - Navegación flotante para móvil
+ * Muestra flechas para navegar entre secciones
+ */
+---
+
+<div class="floating-nav" id="floatingNav">
+  <button class="floating-nav-btn floating-nav-up" id="navUp" aria-label="Ir a sección anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+  <button class="floating-nav-btn floating-nav-down" id="navDown" aria-label="Ir a siguiente sección">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // Secciones de la página en orden
+  const sections = [
+    '#hero',
+    '#servicios',
+    '#planes',
+    '#tecnologias',
+    '#proceso',
+    '#equipo',
+    '#contacto'
+  ];
+
+  const navUp = document.getElementById('navUp');
+  const navDown = document.getElementById('navDown');
+  const floatingNav = document.getElementById('floatingNav');
+
+  function getCurrentSection() {
+    const scrollPosition = window.pageYOffset + window.innerHeight / 2;
+    
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const section = document.querySelector(sections[i]);
+      if (section && section.offsetTop <= scrollPosition) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  function scrollToSection(index) {
+    const section = document.querySelector(sections[index]);
+    if (section) {
+      const offsetTop = section.offsetTop - 20; // Pequeño offset para no quedar pegado arriba
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  function updateNavVisibility() {
+    const currentIndex = getCurrentSection();
+    
+    // Mostrar/ocultar botones según la posición
+    if (navUp) {
+      navUp.style.opacity = currentIndex > 0 ? '1' : '0.3';
+      navUp.style.pointerEvents = currentIndex > 0 ? 'all' : 'none';
+    }
+    
+    if (navDown) {
+      navDown.style.opacity = currentIndex < sections.length - 1 ? '1' : '0.3';
+      navDown.style.pointerEvents = currentIndex < sections.length - 1 ? 'all' : 'none';
+    }
+  }
+
+  if (navUp && navDown) {
+    navUp.addEventListener('click', () => {
+      const currentIndex = getCurrentSection();
+      if (currentIndex > 0) {
+        scrollToSection(currentIndex - 1);
+      }
+    });
+
+    navDown.addEventListener('click', () => {
+      const currentIndex = getCurrentSection();
+      if (currentIndex < sections.length - 1) {
+        scrollToSection(currentIndex + 1);
+      }
+    });
+
+    // Actualizar visibilidad al hacer scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateNavVisibility, 100);
+    });
+
+    // Actualizar al cargar la página
+    updateNavVisibility();
+  }
+</script>
+
+<style>
+  .floating-nav {
+    position: fixed;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .floating-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+    border: 2px solid rgba(74, 158, 255, 0.3);
+    color: var(--color-bg-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.4), 0 0 0 0 rgba(74, 158, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .floating-nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+
+  .floating-nav-btn:hover::before {
+    width: 100%;
+    height: 100%;
+  }
+
+  .floating-nav-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(74, 158, 255, 0.6), 0 0 0 8px rgba(74, 158, 255, 0.1);
+    border-color: rgba(74, 158, 255, 0.6);
+  }
+
+  .floating-nav-btn:active {
+    transform: scale(0.95);
+  }
+
+  .floating-nav-btn svg {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .floating-nav-btn:hover svg {
+    transform: translateY(-2px);
+  }
+
+  .floating-nav-down:hover svg {
+    transform: translateY(2px);
+  }
+
+  .floating-nav-btn:disabled,
+  .floating-nav-btn[style*="pointer-events: none"] {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .floating-nav {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .floating-nav {
+      right: var(--spacing-sm);
+    }
+
+    .floating-nav-btn {
+      width: 44px;
+      height: 44px;
+    }
+
+    .floating-nav-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+

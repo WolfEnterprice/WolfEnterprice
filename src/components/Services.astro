@@ -83,34 +83,66 @@ const services = serviceService.getAllServices();
   }
 
   @media (max-width: 768px) {
+    .services-header {
+      margin-bottom: var(--spacing-md);
+    }
+
     .services-grid {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
+      gap: var(--spacing-md);
       max-width: 100%;
     }
 
     .service-card {
       max-width: 100%;
-      padding: var(--spacing-xl);
+      padding: var(--spacing-md);
+    }
+
+    .service-icon-wrapper {
+      margin-bottom: var(--spacing-sm);
     }
 
     .service-icon {
-      width: 56px;
-      height: 56px;
+      width: 48px;
+      height: 48px;
     }
 
     .service-card h3 {
-      font-size: 1.375rem;
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-xs);
     }
 
     .service-card p {
-      font-size: 1rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
     }
   }
 
   @media (max-width: 480px) {
     .services-header {
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .services-grid {
+      gap: var(--spacing-sm);
+    }
+
+    .service-card {
+      padding: var(--spacing-sm);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .service-card h3 {
+      font-size: 1.125rem;
+    }
+
+    .service-card p {
+      font-size: 0.875rem;
     }
 
     .service-card {

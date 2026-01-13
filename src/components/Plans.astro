@@ -214,9 +214,13 @@ const getPlanColor = (color: string) => {
   }
 
   @media (max-width: 768px) {
+    .plans-header {
+      margin-bottom: var(--spacing-md);
+    }
+
     .plans-grid {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
+      gap: var(--spacing-md);
       max-width: 100%;
     }
 
@@ -226,35 +230,64 @@ const getPlanColor = (color: string) => {
 
     .plan-card {
       max-width: 100%;
-      padding: var(--spacing-xl);
+      padding: var(--spacing-md);
+    }
+
+    .plan-header {
+      margin-bottom: var(--spacing-sm);
+      padding-bottom: var(--spacing-sm);
     }
 
     .plan-header h3 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
 
     .plan-description {
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
+    }
+
+    .plan-features {
+      gap: var(--spacing-xs);
     }
 
     .plan-features li {
-      font-size: 1rem;
-      padding: var(--spacing-sm) 0;
+      font-size: 0.9375rem;
+      padding: var(--spacing-xs) 0;
+    }
+
+    .plan-cta {
+      margin-top: var(--spacing-sm);
     }
   }
 
   @media (max-width: 480px) {
     .plans-header {
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .plans-grid {
+      gap: var(--spacing-sm);
     }
 
     .plan-card {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-sm);
     }
 
     .plan-header {
-      margin-bottom: var(--spacing-md);
-      padding-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-xs);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    .plan-header h3 {
+      font-size: 1.125rem;
+    }
+
+    .plan-description {
+      font-size: 0.8125rem;
+    }
+
+    .plan-features li {
+      font-size: 0.875rem;
     }
   }
 </style>
