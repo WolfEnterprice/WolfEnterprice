@@ -191,21 +191,21 @@ a:hover {
   }
 }
 
-/* Secciones - Mobile First */
+/* Secciones - Mobile First - Espaciado moderado y profesional */
 .section {
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-xl) 0;
   position: relative;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--spacing-3xl) 0;
+    padding: var(--spacing-2xl) 0;
   }
 }
 
 @media (min-width: 1024px) {
   .section {
-    padding: var(--spacing-4xl) 0;
+    padding: var(--spacing-3xl) 0;
   }
 }
 
@@ -256,14 +256,8 @@ a:hover {
 @media (min-width: 768px) {
   .section-subtitle {
     font-size: clamp(1rem, 2vw, 1.1875rem);
-    line-height: 1.8;
-    margin-bottom: var(--spacing-2xl);
-  }
-}
-
-@media (min-width: 768px) {
-  .section-subtitle {
-    margin-bottom: var(--spacing-3xl);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-xl);
     padding: 0;
   }
 }
