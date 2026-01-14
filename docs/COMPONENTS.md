@@ -305,20 +305,41 @@ Muestra las tecnologías utilizadas por la empresa.
 
 ### Descripción
 
-Muestra el proceso de trabajo en pasos numerados.
+Muestra el proceso de trabajo en pasos numerados con conectores visuales entre pasos.
 
 ### Características
 
 - Pasos numerados (1-5)
 - Título y descripción por paso
 - Diseño vertical con números destacados
-- Animaciones en scroll
+- Conectores visuales entre pasos (excepto el último)
+- Sin animaciones parallax (contenido fijo)
 
 ### Uso
 
 ```astro
 <Process />
 ```
+
+### Implementación Técnica
+
+**Uso de `index` en el map:**
+
+El componente utiliza `index` del método `.map()` para determinar si mostrar el conector visual:
+
+```astro
+{steps.map((step, index) => (
+  <div class="process-step">
+    <div class="process-number-wrapper">
+      <div class="process-number">{step.number}</div>
+      {index < steps.length - 1 && <div class="process-connector"></div>}
+    </div>
+    <!-- ... -->
+  </div>
+))}
+```
+
+**Nota importante:** El parámetro `index` es necesario para mostrar el conector solo entre pasos (no después del último paso).
 
 ### Datos
 
@@ -345,6 +366,8 @@ Editar `getProcessSteps()` en `processService.ts`:
   description: 'Descripción del nuevo paso'
 }
 ```
+
+El conector se ajustará automáticamente gracias al uso de `index`.
 
 ---
 
@@ -482,10 +505,10 @@ Pie de página con información de contacto, redes sociales y logo.
 ### Características
 
 - Logo de la empresa
-- Información de contacto
-- Enlaces a redes sociales
-- Copyright
-- Diseño responsive
+- Información de contacto (WhatsApp y email)
+- Enlaces a redes sociales (Instagram)
+- Copyright dinámico (año actual)
+- Diseño responsive con grid adaptable
 
 ### Uso
 
@@ -493,11 +516,51 @@ Pie de página con información de contacto, redes sociales y logo.
 <Footer />
 ```
 
+### Estructura
+
+El Footer contiene 4 secciones principales:
+
+1. **Empresa**: Logo, nombre y descripción
+2. **Enlaces**: Navegación rápida a secciones
+3. **Contacto**: WhatsApp y email
+4. **Redes Sociales**: Instagram con icono SVG
+
+### Redes Sociales
+
+**Instagram:**
+
+- URL: `https://www.instagram.com/wolfenterprisedev`
+- Icono SVG integrado
+- Se abre en nueva pestaña con `target="_blank"` y `rel="noopener noreferrer"`
+
 ### Personalización
 
-- Editar información de contacto directamente en el componente
-- Agregar/remover redes sociales
-- Cambiar año de copyright
+**Agregar nueva red social:**
+
+```astro
+<li>
+  <a
+    href="URL_DE_LA_RED_SOCIAL"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Descripción accesible"
+  >
+    <svg class="social-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+      <!-- SVG path del icono -->
+    </svg>
+    Nombre de la red
+  </a>
+</li>
+```
+
+**Cambiar información de contacto:**
+
+- WhatsApp: Editar `whatsappUrl` desde `contactService`
+- Email: Editar directamente en el componente (línea ~48)
+
+**Cambiar año de copyright:**
+
+El año se genera automáticamente con `new Date().getFullYear()`, no requiere cambios manuales.
 
 ---
 
@@ -606,5 +669,11 @@ const data = Service.getData();
 
 ---
 
-**Última actualización**: Diciembre 2024
+**Última actualización**: Enero 2025
+
+### Cambios Recientes
+
+- ✅ Corrección de uso de `index` en Process, Plans y Team
+- ✅ Integración de Instagram en Footer (sección única)
+- ✅ Optimización de componentes sin animaciones parallax
 

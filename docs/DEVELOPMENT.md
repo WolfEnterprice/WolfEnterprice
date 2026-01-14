@@ -497,5 +497,14 @@ npm run astro check
 
 ---
 
-**Última actualización**: Diciembre 2024
+**Última actualización**: Enero 2025
+
+### Cambios Recientes
+
+- ✅ Integración de Instagram en Footer (sección única, sin duplicados)
+- ✅ Corrección de errores de build (variable `index` en Process, Plans y Team)
+- ✅ Optimización de componentes (eliminación de parallax, reducción de espaciados)
+- ✅ Mejoras en tipografía y responsive design
+- ✅ Corrección de sección duplicada de Instagram en Footer
+- ✅ Build sin errores y optimizado
 

@@ -40,7 +40,8 @@ Landing page profesional y optimizada para SEO construida con **Astro**, enfocad
 - 🔍 **SEO optimizado**: Meta tags, Open Graph, sitemap y estructura semántica
 - 📱 **Responsive**: Diseño adaptable a todos los dispositivos (Mobile First)
 - 🎨 **Diseño profesional**: UI/UX moderna y orientada a conversión
-- 💬 **Integración WhatsApp**: Formulario de contacto con envío directo a WhatsApp
+- 💬 **Integración WhatsApp**: Formulario de contacto con envío directo a WhatsApp y vista previa en tiempo real
+- 📸 **Redes sociales**: Integración con Instagram en el footer
 - 🎯 **Alta conversión**: CTAs estratégicos y diseño orientado a resultados
 - 🏗️ **Arquitectura escalable**: Código limpio con servicios de negocio separados
 - ♿ **Accesible**: Cumple con estándares de accesibilidad web
@@ -495,6 +496,26 @@ El proyecto sigue un enfoque **Mobile First**:
 
 ## ⚙️ Configuración
 
+### Redes Sociales
+
+#### Instagram
+
+El enlace de Instagram está configurado en `src/components/Footer.astro`:
+
+```astro
+href="https://www.instagram.com/wolfenterprisedev"
+```
+
+**Para cambiar el enlace de Instagram:**
+
+1. Editar `src/components/Footer.astro`
+2. Buscar la sección "Redes Sociales" (línea ~54)
+3. Actualizar el `href` del enlace de Instagram
+
+**Para agregar otra red social:**
+
+Agregar un nuevo `<li>` dentro de `<ul class="footer-links footer-social">` con el icono SVG correspondiente.
+
 ### WhatsApp
 
 **Archivo:** `src/services/contactService.ts`
@@ -689,4 +710,13 @@ Este proyecto es propiedad de **WolfEnterprice**.
 
 ---
 
-**Última actualización**: Diciembre 2024
+**Última actualización**: Enero 2025
+
+### Cambios Recientes
+
+- ✅ Integración de Instagram en Footer
+- ✅ Corrección de errores de build (variable `index` en Process, Plans y Team)
+- ✅ Optimización de componentes (eliminación de parallax, reducción de espaciados)
+- ✅ Mejoras en tipografía y responsive design
+- ✅ Corrección de sección duplicada de Instagram en Footer
+- ✅ Build sin errores y optimizado
