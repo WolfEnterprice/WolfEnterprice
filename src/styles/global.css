@@ -217,10 +217,10 @@ a:hover {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 200% 200%;
-  font-weight: var(--font-weight-extrabold);
-  letter-spacing: -0.02em;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.015em;
   position: relative;
-  animation: gradient-shift 8s ease infinite;
+  line-height: 1.2;
 }
 
 @media (min-width: 768px) {

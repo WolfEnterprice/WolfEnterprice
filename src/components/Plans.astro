@@ -76,13 +76,19 @@ const getPlanColor = (color: string) => {
 
   .plans-header {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
     position: relative;
     z-index: 1;
   }
 
+  @media (min-width: 1024px) {
+    .plans-header {
+      margin-bottom: var(--spacing-2xl);
+    }
+  }
+
   .plans-grid {
-    margin-top: var(--spacing-2xl);
+    margin-top: var(--spacing-lg);
     position: relative;
     z-index: 1;
     max-width: 1200px;
@@ -90,9 +96,15 @@ const getPlanColor = (color: string) => {
     margin-right: auto;
   }
 
+  @media (min-width: 1024px) {
+    .plans-grid {
+      margin-top: var(--spacing-xl);
+    }
+  }
+
   .plan-card {
     position: relative;
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     transition: all var(--transition-normal);
     background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(21, 21, 32, 0.95) 100%);
     border: 1px solid rgba(74, 158, 255, 0.2);
@@ -102,6 +114,12 @@ const getPlanColor = (color: string) => {
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 25px rgba(74, 158, 255, 0.1);
+  }
+
+  @media (min-width: 1024px) {
+    .plan-card {
+      padding: var(--spacing-2xl);
+    }
   }
 
   .plan-card::after {
@@ -152,38 +170,39 @@ const getPlanColor = (color: string) => {
 
   .plan-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
-    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
     border-bottom: 2px solid rgba(74, 158, 255, 0.2);
   }
 
   .plan-header h3 {
     color: var(--plan-color);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
     font-weight: var(--font-weight-bold);
+    line-height: 1.2;
   }
 
   .plan-description {
     color: var(--color-text-secondary);
-    font-size: 1rem;
+    font-size: 0.9375rem;
     line-height: 1.6;
   }
 
   .plan-features {
     list-style: none;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     flex-grow: 1;
-    padding-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
   }
 
   .plan-features li {
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-sm) 0;
     color: var(--color-text-tertiary);
     display: flex;
     align-items: start;
-    gap: var(--spacing-md);
-    font-size: 1.0625rem;
+    gap: var(--spacing-sm);
+    font-size: 0.9375rem;
     line-height: 1.6;
     border-bottom: 1px solid rgba(74, 158, 255, 0.1);
   }

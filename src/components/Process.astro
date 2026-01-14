@@ -7,8 +7,8 @@ import { processService } from '../services/processService';
 const steps = processService.getProcessSteps();
 ---
 
-<section id="proceso" class="section process-section parallax-section">
-  <div class="process-background parallax-medium"></div>
+<section id="proceso" class="section process-section">
+  <div class="process-background"></div>
   <div class="container">
     <div class="process-header">
       <h2 class="section-title">Nuestro Proceso de Trabajo</h2>
@@ -18,8 +18,8 @@ const steps = processService.getProcessSteps();
       </p>
     </div>
     <div class="process-steps">
-      {steps.map((step, index) => (
-        <div class="process-step parallax-fast animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+      {steps.map((step) => (
+        <div class="process-step">
           <div class="process-number-wrapper">
             <div class="process-number">{step.number}</div>
             {index < steps.length - 1 && <div class="process-connector"></div>}
@@ -54,27 +54,47 @@ const steps = processService.getProcessSteps();
 
   .process-header {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
     position: relative;
     z-index: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .process-header {
+      margin-bottom: var(--spacing-2xl);
+    }
   }
 
   .process-steps {
     max-width: 1100px;
-    margin: var(--spacing-2xl) auto 0;
+    margin: var(--spacing-lg) auto 0;
     position: relative;
     z-index: 1;
   }
 
+  @media (min-width: 1024px) {
+    .process-steps {
+      margin-top: var(--spacing-xl);
+    }
+  }
+
   .process-step {
     display: flex;
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
     align-items: start;
     position: relative;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border-radius: 12px;
     transition: all var(--transition-normal);
+  }
+
+  @media (min-width: 1024px) {
+    .process-step {
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-lg);
+    }
   }
 
   .process-step:hover {
@@ -149,8 +169,8 @@ const steps = processService.getProcessSteps();
 
   .process-content p {
     color: var(--color-text-tertiary);
-    line-height: 1.85;
-    font-size: 1.0625rem;
+    line-height: 1.7;
+    font-size: 1rem;
   }
 
   @media (max-width: 768px) {

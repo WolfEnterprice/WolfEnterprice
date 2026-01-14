@@ -7,8 +7,8 @@ import { serviceService } from '../services/serviceService';
 const services = serviceService.getAllServices();
 ---
 
-<section id="servicios" class="section services-section parallax-section">
-  <div class="services-background parallax-medium"></div>
+<section id="servicios" class="section services-section">
+  <div class="services-background"></div>
   <div class="container">
     <div class="services-header">
       <h2 class="section-title">Nuestros Servicios</h2>
@@ -18,8 +18,8 @@ const services = serviceService.getAllServices();
       </p>
     </div>
     <div class="services-grid">
-      {services.map((service, index) => (
-        <div class="card service-card parallax-fast animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+      {services.map((service) => (
+        <div class="card service-card">
           <div class="service-icon-wrapper">
             <svg class="service-icon" aria-hidden="true">
               <use href={`#icon-${service.icon}`}></use>
@@ -59,9 +59,15 @@ const services = serviceService.getAllServices();
 
   .services-header {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
     position: relative;
     z-index: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .services-header {
+      margin-bottom: var(--spacing-2xl);
+    }
   }
 
   .services-grid {
@@ -71,8 +77,14 @@ const services = serviceService.getAllServices();
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     justify-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      gap: var(--spacing-xl);
+    }
   }
 
   @media (max-width: 1024px) {
@@ -156,7 +168,7 @@ const services = serviceService.getAllServices();
 
   .service-card {
     text-align: center;
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -164,6 +176,12 @@ const services = serviceService.getAllServices();
     height: 100%;
     max-width: 380px;
     width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .service-card {
+      padding: var(--spacing-2xl);
+    }
   }
 
   .service-card::before {
@@ -231,10 +249,10 @@ const services = serviceService.getAllServices();
 
   .service-card p {
     color: var(--color-text-tertiary);
-    line-height: 1.8;
-    font-size: 1.0625rem;
+    line-height: 1.7;
+    font-size: 1rem;
     flex-grow: 1;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
   }
 
   .service-cta {

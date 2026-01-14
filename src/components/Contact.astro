@@ -9,8 +9,8 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero más informació
 const contactEmail = contactService.getEmail();
 ---
 
-<section id="contacto" class="section contact-section parallax-section">
-  <div class="contact-background parallax-slow"></div>
+<section id="contacto" class="section contact-section">
+  <div class="contact-background"></div>
   <div class="container">
     <div class="contact-header">
       <h2 class="section-title">¿Listo para Crecer Digitalmente?</h2>
@@ -20,8 +20,8 @@ const contactEmail = contactService.getEmail();
         estamos listos para escucharte y crear algo increíble juntos.
       </p>
     </div>
-    <div class="contact-content parallax-fast">
-      <div class="contact-form-container animate-on-scroll">
+    <div class="contact-content">
+      <div class="contact-form-container">
         <div class="contact-form-wrapper">
           <div class="contact-form-section">
             <h3 class="form-section-title">Completa el formulario</h3>
@@ -230,16 +230,28 @@ _Mensaje enviado desde wolfenterprice`;
 
   .contact-header {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
     position: relative;
     z-index: 1;
   }
 
+  @media (min-width: 1024px) {
+    .contact-header {
+      margin-bottom: var(--spacing-2xl);
+    }
+  }
+
   .contact-content {
     max-width: 1200px;
-    margin: var(--spacing-2xl) auto 0;
+    margin: var(--spacing-lg) auto 0;
     position: relative;
     z-index: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-content {
+      margin-top: var(--spacing-xl);
+    }
   }
 
   .contact-form-container {
@@ -261,24 +273,31 @@ _Mensaje enviado desde wolfenterprice`;
   }
 
   .contact-form-section {
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     background: var(--color-bg-card);
     display: flex;
     flex-direction: column;
   }
 
+  @media (min-width: 1024px) {
+    .contact-form-section {
+      padding: var(--spacing-2xl);
+    }
+  }
+
   .form-section-title {
     color: var(--color-text-primary);
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
     font-weight: var(--font-weight-bold);
     margin-bottom: var(--spacing-xs);
     letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .form-section-subtitle {
     color: var(--color-text-secondary);
     font-size: 0.9375rem;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     line-height: 1.6;
     font-weight: var(--font-weight-normal);
   }

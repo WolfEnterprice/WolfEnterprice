@@ -4,10 +4,10 @@
  */
 ---
 
-<section id="nosotros" class="section about-section parallax-section">
-  <div class="about-background parallax-slow"></div>
+<section id="nosotros" class="section about-section">
+  <div class="about-background"></div>
   <div class="container">
-    <div class="about-content parallax-fast">
+    <div class="about-content">
       <div class="about-text">
         <h2 class="section-title">Quiénes Somos</h2>
         <div class="about-intro">
@@ -17,7 +17,7 @@
           </p>
         </div>
         <div class="about-grid">
-          <div class="about-card animate-on-scroll">
+          <div class="about-card">
             <div class="about-card-icon">
               <svg aria-hidden="true">
                 <use href="#icon-target"></use>
@@ -29,7 +29,7 @@
               Creemos que cada negocio merece una presencia online profesional que realmente funcione.
             </p>
           </div>
-          <div class="about-card animate-on-scroll">
+          <div class="about-card">
             <div class="about-card-icon">
               <svg aria-hidden="true">
                 <use href="#icon-lightning"></use>
@@ -41,7 +41,7 @@
               optimizados para velocidad, experiencia de usuario y posicionamiento en motores de búsqueda.
             </p>
           </div>
-          <div class="about-card animate-on-scroll">
+          <div class="about-card">
             <div class="about-card-icon">
               <svg aria-hidden="true">
                 <use href="#icon-handshake"></use>
@@ -87,15 +87,15 @@
 
   .about-intro {
     text-align: center;
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .about-lead {
-    font-size: 1.375rem;
-    line-height: 1.9;
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.7;
     color: var(--color-text-secondary);
     font-weight: var(--font-weight-normal);
   }
@@ -107,15 +107,21 @@
 
   .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
     justify-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .about-grid {
+      gap: var(--spacing-xl);
+    }
   }
 
   .about-card {
     background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%);
-    border-radius: 20px;
-    padding: var(--spacing-2xl);
+    border-radius: 16px;
+    padding: var(--spacing-xl);
     border: 1px solid rgba(74, 158, 255, 0.2);
     transition: all var(--transition-normal);
     text-align: center;
@@ -169,8 +175,8 @@
 
   .about-card p {
     color: var(--color-text-tertiary);
-    line-height: 1.8;
-    font-size: 1.0625rem;
+    line-height: 1.7;
+    font-size: 1rem;
   }
 
   .about-card strong {
