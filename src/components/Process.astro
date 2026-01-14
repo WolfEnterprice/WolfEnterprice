@@ -18,7 +18,7 @@ const steps = processService.getProcessSteps();
       </p>
     </div>
     <div class="process-steps">
-      {steps.map((step) => (
+      {steps.map((step, index) => (
         <div class="process-step">
           <div class="process-number-wrapper">
             <div class="process-number">{step.number}</div>
