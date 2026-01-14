@@ -207,6 +207,42 @@ const currentYear = new Date().getFullYear();
     width: 100%;
   }
 
+  .footer-social {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .footer-social li {
+    margin-bottom: 0;
+  }
+
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 8px;
+    transition: all var(--transition-normal);
+  }
+
+  .footer-social a:hover {
+    background: rgba(74, 158, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .social-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer-social {
+      justify-content: center;
+    }
+  }
+
   .footer-bottom {
     text-align: center;
     padding-top: var(--spacing-lg);
