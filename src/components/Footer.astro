@@ -12,6 +12,9 @@ const currentYear = new Date().getFullYear();
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
+        <a href="/" class="footer-logo-link">
+          <img src="/icons/logo.png" alt="WolfEnterprice Logo" class="footer-logo" />
+        </a>
         <h3>WolfEnterprice</h3>
         <p>
           Desarrollo web profesional y soluciones digitales para hacer crecer tu
@@ -96,6 +99,29 @@ const currentYear = new Date().getFullYear();
       padding: var(--spacing-xl) 0 var(--spacing-md);
       margin-top: var(--spacing-2xl);
     }
+
+    .footer-logo {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .footer-logo-link {
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+    transition: transform var(--transition-normal);
+  }
+
+  .footer-logo-link:hover {
+    transform: scale(1.05);
+  }
+
+  .footer-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 12px;
+    filter: drop-shadow(0 4px 12px rgba(74, 158, 255, 0.3));
   }
 
   .footer-section h3,

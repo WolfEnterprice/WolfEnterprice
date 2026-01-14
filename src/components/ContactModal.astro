@@ -18,7 +18,10 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
   <div class="modal-overlay" id="modalOverlay"></div>
   <div class="modal-container">
     <div class="modal-header">
-      <h3 class="modal-title">¿Cómo prefieres contactarnos?</h3>
+      <div class="modal-header-content">
+        <img src="/icons/logo.png" alt="WolfEnterprice Logo" class="modal-logo" />
+        <h3 class="modal-title">Continuar por WhatsApp</h3>
+      </div>
       <button class="modal-close" id="modalClose" aria-label="Cerrar modal">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -29,7 +32,7 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
     
     <div class="modal-content">
       <p class="modal-description">
-        Elige el método que prefieras para continuar con tu solicitud. 
+        Te redirigiremos a WhatsApp para continuar con tu solicitud. 
         Te responderemos lo antes posible.
       </p>
       
@@ -38,7 +41,7 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="modal-option modal-option-whatsapp"
+          class="modal-option modal-option-whatsapp modal-option-primary"
           id="whatsappOption"
         >
           <div class="option-icon">
@@ -47,31 +50,8 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
             </svg>
           </div>
           <div class="option-content">
-            <h4 class="option-title">WhatsApp</h4>
+            <h4 class="option-title">Continuar por WhatsApp</h4>
             <p class="option-description">Conversación rápida e inmediata</p>
-          </div>
-          <div class="option-arrow">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-        </a>
-        
-        <a
-          href={mailtoUrl}
-          class="modal-option modal-option-email"
-          id="emailOption"
-        >
-          <div class="option-icon">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </div>
-          <div class="option-content">
-            <h4 class="option-title">Correo Electrónico</h4>
-            <p class="option-description">Abrir tu cliente de correo</p>
           </div>
           <div class="option-arrow">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -150,6 +130,22 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
     justify-content: space-between;
     padding: var(--spacing-xl);
     border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+  }
+
+  .modal-header-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex: 1;
+  }
+
+  .modal-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 8px;
+    filter: drop-shadow(0 2px 8px rgba(74, 158, 255, 0.3));
+    flex-shrink: 0;
   }
 
   .modal-title {
@@ -244,8 +240,9 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
     box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
   }
 
-  .modal-option-email:hover {
-    background: linear-gradient(135deg, rgba(74, 158, 255, 0.1) 0%, rgba(74, 158, 255, 0.15) 100%);
+  .modal-option-primary {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(37, 211, 102, 0.15) 100%);
+    border-color: rgba(37, 211, 102, 0.3);
   }
 
   .option-icon {
@@ -264,10 +261,6 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
     color: #25d366;
   }
 
-  .modal-option-email .option-icon {
-    background: rgba(74, 158, 255, 0.2);
-    color: var(--color-primary);
-  }
 
   .modal-option:hover .option-icon {
     transform: scale(1.1) rotate(5deg);
@@ -323,6 +316,15 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
 
     .modal-header {
       padding: var(--spacing-lg);
+    }
+
+    .modal-header-content {
+      gap: var(--spacing-sm);
+    }
+
+    .modal-logo {
+      width: 40px;
+      height: 40px;
     }
 
     .modal-title {
@@ -392,7 +394,8 @@ const { name, email, phone, message, whatsappUrl, mailtoUrl } = Astro.props;
     }
   });
 
-  // Exponer función globalmente para usarla desde Contact.astro
+  // Exponer funciones globalmente para usarla desde Contact.astro
   window.showContactModal = showModal;
+  window.hideContactModal = hideModal;
 </script>
 

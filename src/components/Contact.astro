@@ -22,82 +22,89 @@ const contactEmail = contactService.getEmail();
     </div>
     <div class="contact-content parallax-fast">
       <div class="contact-form-container animate-on-scroll">
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="name">Nombre completo</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder="Tu nombre"
-            />
+        <div class="contact-form-wrapper">
+          <div class="contact-form-section">
+            <h3 class="form-section-title">Completa el formulario</h3>
+            <p class="form-section-subtitle">
+              Llena los datos y te redirigiremos a WhatsApp con tu mensaje listo para enviar.
+            </p>
+            <form class="contact-form" id="contactForm">
+              <div class="form-group">
+                <label for="name">Nombre completo</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Tu nombre"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="tu@email.com"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="+57 300 123 4567"
+                />
+              </div>
+              <div class="form-group">
+                <label for="message">Mensaje</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder="Cuéntanos sobre tu proyecto..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-whatsapp-submit">
+                <svg aria-hidden="true" class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Enviar por WhatsApp
+              </button>
+            </form>
+            <div class="contact-info-inline">
+              <a href={`mailto:${contactEmail}`} class="contact-info-link">
+                <svg class="contact-info-icon" aria-hidden="true">
+                  <use href="#icon-mail"></use>
+                </svg>
+                {contactEmail}
+              </a>
+              <span class="contact-info-separator">•</span>
+              <span class="contact-info-text">
+                <svg class="contact-info-icon" aria-hidden="true">
+                  <use href="#icon-clock"></use>
+                </svg>
+                Respuesta en menos de 24 horas
+              </span>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="tu@email.com"
-            />
+          <div class="message-preview-section">
+            <div class="preview-header">
+              <div class="preview-header-text">
+                <h4 class="preview-title">Vista previa del mensaje</h4>
+                <p class="preview-subtitle">Así se verá en WhatsApp</p>
+              </div>
+            </div>
+            <div class="message-preview" id="messagePreview">
+              <div class="preview-placeholder">
+                Completa el formulario para ver la previsualización
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="phone">Teléfono</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              placeholder="+57 300 123 4567"
-            />
-          </div>
-          <div class="form-group">
-            <label for="message">Mensaje</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              placeholder="Cuéntanos sobre tu proyecto..."
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-        </form>
-      </div>
-      <div class="contact-cta animate-on-scroll">
-        <div class="contact-cta-icon">
-          <svg aria-hidden="true">
-            <use href="#icon-message"></use>
-          </svg>
-        </div>
-        <h3>¿Prefieres hablar directamente?</h3>
-        <p>
-          A veces es mejor conversar. Escríbenos por WhatsApp y te responderemos de inmediato. 
-          Estamos aquí para responder todas tus preguntas y ayudarte a encontrar la mejor solución para tu negocio.
-        </p>
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-whatsapp btn-large"
-        >
-          Hablar por WhatsApp
-        </a>
-        <div class="contact-info">
-          <a href={`mailto:${contactEmail}`} class="contact-info-text contact-email-link">
-            <svg class="contact-info-icon" aria-hidden="true">
-              <use href="#icon-mail"></use>
-            </svg>
-            {contactEmail}
-          </a>
-          <p class="contact-info-text">
-            <svg class="contact-info-icon" aria-hidden="true">
-              <use href="#icon-clock"></use>
-            </svg>
-            Respuesta en menos de 24 horas
-          </p>
         </div>
       </div>
     </div>
@@ -110,12 +117,68 @@ const contactEmail = contactService.getEmail();
 <script define:vars={{ contactEmail }}>
   // Manejo del formulario de contacto
   const form = document.getElementById('contactForm');
+  const preview = document.getElementById('messagePreview');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const messageInput = document.getElementById('message');
+  
+  // Función para generar el mensaje
+  function generateMessage(name = '', email = '', phone = '', message = '') {
+    if (!name && !email && !phone && !message) {
+      return '';
+    }
+    
+    return `¡Hola! 👋
+
+Mi nombre es *${name || '...'}*.
+
+${message || '...'}
+
+📧 *Email:* ${email || '...'}
+📱 *Teléfono:* ${phone || '...'}
+
+---
+_Mensaje enviado desde wolfenterprice`;
+  }
+  
+  // Función para actualizar la previsualización
+  function updatePreview() {
+    if (!preview) return;
+    
+    const name = nameInput?.value || '';
+    const email = emailInput?.value || '';
+    const phone = phoneInput?.value || '';
+    const message = messageInput?.value || '';
+    
+    const messageText = generateMessage(name, email, phone, message);
+    
+    if (messageText && (name || email || phone || message)) {
+      // Convertir formato de WhatsApp a HTML básico
+      let html = messageText
+        .replace(/\*(.+?)\*/g, '<strong>$1</strong>')
+        .replace(/_([^_]+)_/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>');
+      
+      preview.innerHTML = `<div class="preview-content">${html}</div>`;
+      preview.classList.add('preview-has-content');
+    } else {
+      preview.innerHTML = '<div class="preview-placeholder">Completa el formulario para ver la previsualización</div>';
+      preview.classList.remove('preview-has-content');
+    }
+  }
   
   // Función para validar email
   function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
+  
+  // Actualizar preview en tiempo real
+  if (nameInput) nameInput.addEventListener('input', updatePreview);
+  if (emailInput) emailInput.addEventListener('input', updatePreview);
+  if (phoneInput) phoneInput.addEventListener('input', updatePreview);
+  if (messageInput) messageInput.addEventListener('input', updatePreview);
   
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -130,55 +193,17 @@ const contactEmail = contactService.getEmail();
         return;
       }
       
-      // Crear el cuerpo del correo
-      const subject = `Nuevo contacto desde WolfEnterprice - ${data.name}`;
-      const body = `Hola WolfEnterprice,
-
-He visto tu sitio web y estoy interesado en tus servicios.
-
-Información de contacto:
-- Nombre: ${data.name}
-- Email: ${data.email}
-- Teléfono: ${data.phone}
-
-Mensaje:
-${data.message}
-
----
-Este mensaje fue enviado desde el formulario de contacto de wolfenterprice.com`;
-
-      // Generar URLs
-      const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      const whatsappMessage = `Hola, mi nombre es ${data.name}. ${data.message}. Email: ${data.email}, Tel: ${data.phone}`;
+      // Generar mensaje para WhatsApp
+      const whatsappMessage = generateMessage(data.name, data.email, data.phone, data.message);
       const whatsappUrl = `https://wa.me/573137374108?text=${encodeURIComponent(whatsappMessage)}`;
       
-      // Actualizar URLs en el modal si existe
-      const whatsappOption = document.getElementById('whatsappOption');
-      const emailOption = document.getElementById('emailOption');
-      
-      if (whatsappOption) {
-        whatsappOption.href = whatsappUrl;
-      }
-      if (emailOption) {
-        emailOption.href = mailtoUrl;
-      }
-      
-      // Mostrar modal
-      if (window.showContactModal) {
-        window.showContactModal();
-      } else {
-        // Fallback si el modal no está disponible
-        const contactMethod = confirm('¿Prefieres contactarnos por WhatsApp?\n\n- Aceptar: Abrir WhatsApp\n- Cancelar: Abrir tu cliente de correo');
-        if (contactMethod) {
-          window.open(whatsappUrl, '_blank');
-        } else {
-          window.location.href = mailtoUrl;
-        }
-      }
+      // Abrir WhatsApp directamente con el mensaje del formulario
+      window.open(whatsappUrl, '_blank');
       
       // Limpiar formulario después de un delay
       setTimeout(() => {
         form.reset();
+        updatePreview();
       }, 100);
     });
   }
@@ -211,222 +236,341 @@ Este mensaje fue enviado desde el formulario de contacto de wolfenterprice.com`;
   }
 
   .contact-content {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: var(--spacing-2xl) auto 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
     position: relative;
     z-index: 1;
   }
 
   .contact-form-container {
-    background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(15, 15, 15, 0.9) 100%);
-    padding: var(--spacing-2xl);
-    border-radius: 16px;
-    border: 1px solid rgba(74, 158, 255, 0.2);
+    background: var(--color-bg-card);
+    padding: 0;
+    border-radius: 20px;
+    border: 1px solid rgba(74, 158, 255, 0.15);
     backdrop-filter: blur(10px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(74, 158, 255, 0.1);
+    overflow: hidden;
+  }
+
+  .contact-form-wrapper {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 0;
+    align-items: stretch;
+    min-height: 600px;
+  }
+
+  .contact-form-section {
+    padding: var(--spacing-2xl);
+    background: var(--color-bg-card);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-section-title {
+    color: var(--color-text-primary);
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.02em;
+  }
+
+  .form-section-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+    font-weight: var(--font-weight-normal);
+  }
+
+  .contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .form-group {
     margin-bottom: var(--spacing-lg);
   }
 
+  .form-group:last-of-type {
+    margin-bottom: var(--spacing-xl);
+  }
+
   .form-group label {
     display: block;
     margin-bottom: var(--spacing-xs);
     color: var(--color-text-primary);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
   }
 
   .form-group input,
   .form-group textarea {
     width: 100%;
-    padding: var(--spacing-sm);
+    padding: 0.875rem 1rem;
     background: var(--color-bg-primary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     color: var(--color-text-primary);
     font-family: inherit;
-    font-size: 1rem;
-    transition: border-color var(--transition-fast);
+    font-size: 0.9375rem;
+    transition: all var(--transition-fast);
+    line-height: 1.5;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.6;
   }
 
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1), 0 0 20px rgba(74, 158, 255, 0.2);
-    transform: translateY(-2px);
+    background: var(--color-bg-primary);
+    box-shadow: 0 0 0 4px rgba(74, 158, 255, 0.1), 0 4px 12px rgba(74, 158, 255, 0.15);
+    transform: translateY(-1px);
   }
 
   .form-group textarea {
     resize: vertical;
-  }
-
-  .contact-cta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: var(--spacing-2xl);
-    background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%);
-    border-radius: 20px;
-    border: 1px solid rgba(74, 158, 255, 0.2);
-  }
-
-  .contact-cta-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto var(--spacing-md);
-    color: var(--color-primary);
-    filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.5));
-    transition: transform var(--transition-normal);
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .contact-cta:hover .contact-cta-icon {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 20px rgba(37, 211, 102, 0.8));
-  }
-
-  .contact-cta-icon svg {
-    width: 100%;
-    height: 100%;
+    min-height: 120px;
+    line-height: 1.6;
   }
 
   .contact-info-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     color: var(--color-text-muted);
     flex-shrink: 0;
+    opacity: 0.8;
   }
 
-  .contact-cta h3 {
-    color: var(--color-text-primary);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.5rem;
-    font-weight: var(--font-weight-semibold);
+  .contact-info-inline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: var(--spacing-md);
   }
 
-  .contact-cta p {
-    color: var(--color-text-tertiary);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.8;
-    font-size: 1.0625rem;
+  .contact-info-separator {
+    display: none;
   }
 
-  .contact-info {
-    margin-top: var(--spacing-lg);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid rgba(74, 158, 255, 0.2);
-  }
-
-  .contact-info-text {
-    color: var(--color-text-muted);
-    font-size: 0.9375rem;
-    margin-bottom: var(--spacing-xs);
+  .btn-whatsapp-submit {
+    background: linear-gradient(135deg, #25d366, #20ba5a);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-xs);
-    text-decoration: none;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
     transition: all var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
   }
 
-  .contact-email-link:hover {
-    color: var(--color-primary);
-    transform: translateX(3px);
+  .btn-whatsapp-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
   }
 
-  .btn-large {
-    padding: var(--spacing-md) var(--spacing-xl);
-    font-size: 1.125rem;
+  .btn-whatsapp-submit:hover::before {
+    left: 100%;
+  }
+
+  .btn-whatsapp-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+    background: linear-gradient(135deg, #20ba5a, #1ea952);
+  }
+
+  .btn-whatsapp-submit:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .message-preview-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+  }
+
+  .preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .preview-header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 968px) {
+    .contact-form-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .message-preview-section {
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
   }
 
   @media (max-width: 768px) {
     .contact-header {
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
     }
 
     .contact-content {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-md);
-      margin-top: var(--spacing-md);
+      margin-top: var(--spacing-xl);
     }
 
     .contact-form-container {
-      padding: var(--spacing-md);
+      border-radius: 16px;
     }
 
-    .contact-cta {
-      padding: var(--spacing-md);
+    .contact-form-section {
+      padding: var(--spacing-xl);
     }
 
-    .contact-cta-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: var(--spacing-sm);
+    .message-preview-section {
+      padding: var(--spacing-xl);
     }
 
-    .contact-cta h3 {
-      font-size: 1.25rem;
-      margin-bottom: var(--spacing-sm);
+    .form-section-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-xs);
     }
 
-    .contact-cta p {
-      font-size: 0.9375rem;
-      line-height: 1.6;
-      margin-bottom: var(--spacing-md);
+    .form-section-subtitle {
+      font-size: 0.875rem;
+      margin-bottom: var(--spacing-lg);
     }
 
     .form-group {
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
     }
 
-    .contact-info {
-      margin-top: var(--spacing-sm);
-      padding-top: var(--spacing-sm);
+    .form-group:last-of-type {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .message-preview {
+      min-height: 280px;
+      padding: var(--spacing-md);
+    }
+
+    .preview-header {
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+    }
+
+
+    .preview-title {
+      font-size: 1rem;
+    }
+
+    .preview-subtitle {
+      font-size: 0.75rem;
+    }
+
+    .contact-info-inline {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      align-items: center;
+      text-align: center;
+      padding-top: var(--spacing-md);
+    }
+
+    .contact-info-separator {
+      display: none;
+    }
+
+    .btn-whatsapp-submit {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      gap: 0.5rem;
+    }
+
+    .btn-icon {
+      width: 16px;
+      height: 16px;
     }
   }
 
   @media (max-width: 480px) {
-    .contact-header {
-      margin-bottom: var(--spacing-sm);
+    .contact-form-section,
+    .message-preview-section {
+      padding: var(--spacing-lg);
     }
 
-    .contact-content {
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-sm);
+    .form-section-title {
+      font-size: 1.25rem;
     }
 
-    .contact-form-container,
-    .contact-cta {
-      padding: var(--spacing-sm);
-    }
-
-    .contact-cta-icon {
-      width: 32px;
-      height: 32px;
-    }
-
-    .contact-cta h3 {
-      font-size: 1.125rem;
-    }
-
-    .contact-cta p {
-      font-size: 0.875rem;
+    .form-section-subtitle {
+      font-size: 0.8125rem;
     }
 
     .form-group {
-      margin-bottom: var(--spacing-xs);
+      margin-bottom: var(--spacing-sm);
     }
 
-    .btn-large {
-      padding: var(--spacing-xs) var(--spacing-sm);
-      font-size: 0.9375rem;
+    .form-group input,
+    .form-group textarea {
+      padding: 0.75rem 0.875rem;
+      font-size: 0.875rem;
     }
+
+    .message-preview {
+      min-height: 240px;
+      padding: var(--spacing-sm);
+      border-radius: 12px;
+    }
+
+    .preview-content {
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+
   }
 </style>
 

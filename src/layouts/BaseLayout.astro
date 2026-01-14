@@ -15,7 +15,7 @@ interface Props {
 const {
   title = 'WolfEnterprice - Desarrollo Web y Soluciones Digitales',
   description = 'Desarrollo web profesional, optimización SEO y soluciones digitales para emprendedores y empresas. Sitios ultra rápidos con Astro.',
-  ogImage = '/images/og-image.jpg',
+  ogImage = '/icons/logo.png',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -48,8 +48,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/icons/logo.png" />
+    <link rel="apple-touch-icon" href="/icons/logo.png" />
     
     <!-- Preconnect para rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
