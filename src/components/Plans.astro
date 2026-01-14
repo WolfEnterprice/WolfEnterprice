@@ -27,10 +27,10 @@ const getPlanColor = (color: string) => {
       </p>
     </div>
     <div class="grid grid-3 plans-grid">
-      {plans.map((plan, index) => (
+      {plans.map((plan) => (
         <div
-          class={`card plan-card animate-on-scroll ${plan.popular ? 'plan-popular' : ''}`}
-          style={`--plan-color: ${getPlanColor(plan.color)}; transition-delay: ${index * 0.1}s`}
+          class={`card plan-card ${plan.popular ? 'plan-popular' : ''}`}
+          style={`--plan-color: ${getPlanColor(plan.color)}`}
         >
           {plan.popular && <div class="plan-badge">Más Popular</div>}
           <div class="plan-header">
