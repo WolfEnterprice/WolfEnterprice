@@ -52,7 +52,7 @@ const services = serviceService.getAllServices();
     height: 600px;
     bottom: -300px;
     left: -200px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(29, 233, 182, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(80px);
   }
@@ -191,7 +191,7 @@ const services = serviceService.getAllServices();
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-teal), var(--color-accent));
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
     transform: scaleX(0);
     transition: transform var(--transition-normal);
   }
@@ -212,7 +212,7 @@ const services = serviceService.getAllServices();
     position: relative;
     z-index: 2;
     color: var(--color-primary);
-    filter: drop-shadow(0 0 10px rgba(74, 158, 255, 0.5));
+    filter: drop-shadow(0 0 10px rgba(29, 233, 182, 0.5));
     transition: transform var(--transition-normal);
   }
 
@@ -223,7 +223,7 @@ const services = serviceService.getAllServices();
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
-    background: radial-gradient(circle, rgba(74, 158, 255, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(29, 233, 182, 0.3) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(20px);
     opacity: 0;
@@ -232,7 +232,7 @@ const services = serviceService.getAllServices();
 
   .service-card:hover .service-icon {
     transform: scale(1.15) rotate(10deg);
-    filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.8));
+    filter: drop-shadow(0 0 20px rgba(29, 233, 182, 0.8));
   }
 
   .service-card:hover .service-icon-glow {
@@ -270,7 +270,7 @@ const services = serviceService.getAllServices();
   }
 
   .service-link:hover {
-    color: var(--color-teal);
+    color: var(--color-primary);
     gap: var(--spacing-sm);
   }
 </style>

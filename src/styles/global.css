@@ -5,50 +5,55 @@
 
 /* Reset y variables CSS */
 :root {
-  /* Paleta de colores ampliada - Identidad visual del lobo */
-  --color-primary: #4a9eff; /* Azul principal del lobo */
-  --color-primary-light: #6bb0ff;
-  --color-primary-dark: #2d7fcc;
-  --color-primary-darker: #1e5fa3;
+  /* Paleta de colores - Nueva identidad visual */
+  /* Azul profundo - Fondo principal */
+  --color-bg-primary: #0B3C5D;
+  --color-bg-secondary: #2E3A46; /* Gris azulado - Fondos secundarios */
+  --color-bg-tertiary: #1a2a35;
+  --color-bg-card: #1a2a35;
+  --color-bg-card-hover: #223a4a;
+  --color-bg-overlay: rgba(11, 60, 93, 0.9);
+
+  /* Turquesa - Acentos e iconos */
+  --color-primary: #1DE9B6;
+  --color-primary-light: #4df0c8;
+  --color-primary-dark: #15c99a;
+  --color-primary-darker: #0fa87d;
   
-  --color-secondary: #00d4ff; /* Teal brillante */
-  --color-teal: #00b8d4; /* Teal medio */
-  --color-teal-light: #33d9ff;
-  --color-teal-dark: #0097a7;
-  --color-teal-darker: #007a87;
+  /* Verde menta - CTA y botones */
+  --color-accent: #7ED957;
+  --color-accent-light: #9ae575;
+  --color-accent-dark: #6bc545;
+  --color-accent-darker: #5aa835;
   
-  --color-accent: #bfff00; /* Verde lima de las gafas */
-  --color-accent-light: #ccff33;
-  --color-accent-dark: #99cc00;
+  /* Variaciones para compatibilidad */
+  --color-secondary: #1DE9B6; /* Turquesa como secundario */
+  --color-teal: #1DE9B6; /* Turquesa */
+  --color-teal-light: #4df0c8;
+  --color-teal-dark: #15c99a;
+  --color-teal-darker: #0fa87d;
   
-  --color-purple: #8b5cf6; /* Púrpura complementario */
+  /* Colores adicionales para planes y variaciones */
+  --color-purple: #8b5cf6;
   --color-purple-light: #a78bfa;
   --color-purple-dark: #7c3aed;
   
-  --color-cyan: #06b6d4; /* Cyan complementario */
-  --color-cyan-light: #22d3ee;
-  --color-cyan-dark: #0891b2;
+  --color-cyan: #1DE9B6; /* Usar turquesa */
+  --color-cyan-light: #4df0c8;
+  --color-cyan-dark: #15c99a;
 
-  /* Colores de fondo - Más claridad */
-  --color-bg-primary: #0a0a0f; /* Negro con toque azul */
-  --color-bg-secondary: #121218;
-  --color-bg-tertiary: #1a1a22;
-  --color-bg-card: #151520;
-  --color-bg-card-hover: #1f1f2e;
-  --color-bg-overlay: rgba(21, 21, 32, 0.9);
-
-  /* Colores de texto - Más claridad */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #d4e4ff; /* Más claro y visible */
-  --color-text-tertiary: #b8d0f0;
-  --color-text-muted: #8ba0c0;
-  --color-text-accent: #c8e0ff;
+  /* Colores de texto */
+  --color-text-primary: #FFFFFF; /* Blanco */
+  --color-text-secondary: #e0f2f0; /* Blanco con toque turquesa */
+  --color-text-tertiary: #c4e4de;
+  --color-text-muted: #a0c4bc;
+  --color-text-accent: #1DE9B6; /* Turquesa para acentos de texto */
 
   /* Colores de planes */
-  --color-plan-green: #bfff00; /* Verde lima */
+  --color-plan-green: #7ED957; /* Verde menta */
   --color-plan-yellow: #ffd700;
-  --color-plan-blue: #4a9eff; /* Azul del lobo */
-  --color-plan-teal: #00d4ff; /* Teal */
+  --color-plan-blue: #1DE9B6; /* Turquesa */
+  --color-plan-teal: #1DE9B6; /* Turquesa */
   --color-plan-purple: #8b5cf6;
 
   /* Espaciado mejorado */
@@ -212,7 +217,7 @@ a:hover {
 .section-title {
   text-align: center;
   margin-bottom: var(--spacing-md);
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-teal) 50%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -237,7 +242,7 @@ a:hover {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-teal));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   border-radius: 2px;
   opacity: 0.6;
 }
@@ -277,10 +282,10 @@ a:hover {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
   color: var(--color-bg-primary);
   font-weight: 700;
-  box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(126, 217, 87, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -302,8 +307,8 @@ a:hover {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(74, 158, 255, 0.5);
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-teal-dark));
+  box-shadow: 0 10px 30px rgba(126, 217, 87, 0.5);
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
 }
 
 .btn-secondary {
@@ -314,6 +319,7 @@ a:hover {
 
 .btn-secondary:hover {
   background: var(--color-primary);
+  color: var(--color-bg-primary);
   transform: translateY(-2px);
 }
 
@@ -330,14 +336,14 @@ a:hover {
 
 /* Cards mejoradas y centradas - Más claridad y animaciones */
 .card {
-  background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(21, 21, 32, 0.95) 100%);
+  background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(26, 42, 53, 0.95) 100%);
   border-radius: 20px;
   padding: var(--spacing-2xl);
-  border: 1px solid rgba(74, 158, 255, 0.25);
+  border: 1px solid rgba(29, 233, 182, 0.25);
   transition: all var(--transition-normal);
   backdrop-filter: blur(10px);
   will-change: transform;
-  box-shadow: 0 4px 25px rgba(74, 158, 255, 0.15), 0 0 0 1px rgba(74, 158, 255, 0.1);
+  box-shadow: 0 4px 25px rgba(29, 233, 182, 0.15), 0 0 0 1px rgba(29, 233, 182, 0.1);
   position: relative;
   overflow: hidden;
   max-width: 100%;
@@ -350,7 +356,7 @@ a:hover {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-teal), var(--color-accent));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   opacity: 0;
   transition: opacity var(--transition-normal);
 }
@@ -363,7 +369,7 @@ a:hover {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(29, 233, 182, 0.1) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
   pointer-events: none;
@@ -371,9 +377,9 @@ a:hover {
 
 .card:hover {
   transform: translateY(-10px) scale(1.01);
-  border-color: rgba(74, 158, 255, 0.5);
-  background: linear-gradient(135deg, var(--color-bg-card-hover) 0%, rgba(31, 31, 46, 0.95) 100%);
-  box-shadow: 0 25px 50px rgba(74, 158, 255, 0.3), 0 0 0 1px rgba(74, 158, 255, 0.2);
+  border-color: rgba(29, 233, 182, 0.5);
+  background: linear-gradient(135deg, var(--color-bg-card-hover) 0%, rgba(34, 58, 74, 0.95) 100%);
+  box-shadow: 0 25px 50px rgba(29, 233, 182, 0.3), 0 0 0 1px rgba(29, 233, 182, 0.2);
 }
 
 .card:hover::before {
@@ -616,10 +622,10 @@ a:hover {
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+    box-shadow: 0 0 20px rgba(29, 233, 182, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(74, 158, 255, 0.6);
+    box-shadow: 0 0 40px rgba(29, 233, 182, 0.6);
   }
 }
 
@@ -715,12 +721,12 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary), var(--color-teal));
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-primary-dark), var(--color-teal-dark));
+  background: linear-gradient(180deg, var(--color-primary-dark), var(--color-accent-dark));
 }
 
 /* Efectos de fondo animados */

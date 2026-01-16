@@ -47,7 +47,7 @@ const steps = processService.getProcessSteps();
     height: 800px;
     top: 10%;
     right: -400px;
-    background: radial-gradient(circle, rgba(74, 158, 255, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(29, 233, 182, 0.15) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(80px);
   }
@@ -98,7 +98,7 @@ const steps = processService.getProcessSteps();
   }
 
   .process-step:hover {
-    background: rgba(74, 158, 255, 0.05);
+    background: rgba(29, 233, 182, 0.05);
     transform: translateX(10px);
   }
 
@@ -117,7 +117,7 @@ const steps = processService.getProcessSteps();
   .process-number {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -125,7 +125,7 @@ const steps = processService.getProcessSteps();
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--color-bg-primary);
-    box-shadow: 0 10px 30px rgba(74, 158, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(29, 233, 182, 0.4);
     position: relative;
     z-index: 2;
     transition: all var(--transition-normal);
@@ -133,8 +133,8 @@ const steps = processService.getProcessSteps();
 
   .process-step:hover .process-number {
     transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 15px 40px rgba(74, 158, 255, 0.6);
-    background: linear-gradient(135deg, var(--color-primary-light), var(--color-teal-light));
+    box-shadow: 0 15px 40px rgba(29, 233, 182, 0.6);
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-light));
   }
 
   .process-step:hover .process-connector {
@@ -145,7 +145,7 @@ const steps = processService.getProcessSteps();
   .process-connector {
     width: 2px;
     height: calc(100% + var(--spacing-2xl));
-    background: linear-gradient(180deg, var(--color-primary), var(--color-teal));
+    background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
     margin-top: var(--spacing-sm);
     opacity: 0.3;
     position: relative;
@@ -207,7 +207,7 @@ const steps = processService.getProcessSteps();
 
     .process-step:hover {
       transform: translateY(-5px);
-      background: rgba(74, 158, 255, 0.08);
+      background: rgba(29, 233, 182, 0.08);
     }
 
     .process-content h3 {
