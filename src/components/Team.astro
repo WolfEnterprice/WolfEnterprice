@@ -15,8 +15,8 @@ interface TeamMember {
 
 // Obtener proyectos específicos de GitHub en build time
 const projectRepos = [
-  'WolfEnterprice/STREAMINGPLUS',
-  'WolfEnterprice/Sabores-Del-Monte',
+  'WolfEnterprise/STREAMINGPLUS',
+  'WolfEnterprise/Sabores-Del-Monte',
 ];
 
 let githubProjects: Awaited<ReturnType<typeof githubService.getSpecificRepo>>[] = [];
@@ -40,7 +40,7 @@ const fallbackProjects = [
     name: 'Streaming Plus',
     description: 'Plataforma de streaming moderna y escalable con integración de APIs y gestión de contenido multimedia.',
     language: 'TypeScript',
-    url: 'https://github.com/WolfEnterprice/STREAMINGPLUS',
+    url: 'https://github.com/WolfEnterprise/STREAMINGPLUS',
     updatedAt: new Date().toISOString(),
     previewImage: undefined,
   },
@@ -49,7 +49,7 @@ const fallbackProjects = [
     name: 'Sabores Del Monte',
     description: 'Plataforma web para gestión y visualización de productos gastronómicos de la marca Sabores Del Monte.',
     language: 'TypeScript',
-    url: 'https://github.com/WolfEnterprice/Sabores-Del-Monte',
+    url: 'https://github.com/WolfEnterprise/Sabores-Del-Monte',
     updatedAt: new Date().toISOString(),
     previewImage: undefined,
   },

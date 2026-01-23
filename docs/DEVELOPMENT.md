@@ -1,4 +1,4 @@
-# 🛠️ Guía de Desarrollo - WolfEnterprice
+# 🛠️ Guía de Desarrollo - WolfEnterprise
 
 Guía detallada para desarrolladores del equipo.
 
@@ -45,8 +45,8 @@ Guía detallada para desarrolladores del equipo.
 
 ```bash
 # 1. Clonar repositorio
-git clone https://github.com/WolfEnterprice/WolfEnterprice.git
-cd WolfEnterprice
+git clone https://github.com/WolfEnterprise/WolfEnterprise.git
+cd WolfEnterprise
 
 # 2. Instalar dependencias
 npm install

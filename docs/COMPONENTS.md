@@ -1,4 +1,4 @@
-# 🧩 Documentación de Componentes - WolfEnterprice
+# 🧩 Documentación de Componentes - WolfEnterprise
 
 Guía detallada de todos los componentes del proyecto.
 
@@ -463,7 +463,7 @@ Mi nombre es *[Nombre]*.
 📱 *Teléfono:* [teléfono]
 
 ---
-_Mensaje enviado desde wolfenterprice
+_Mensaje enviado desde wolfenterprise
 ```
 
 ### Configuración
@@ -479,7 +479,7 @@ private readonly whatsappNumber: string = '+573137374108';
 **Email de contacto:**
 
 ```typescript
-private readonly email: string = 'contacto@wolfenterprice.com';
+private readonly email: string = 'contacto@wolfenterprise.com';
 ```
 
 ### Personalización

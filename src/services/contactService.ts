@@ -5,7 +5,7 @@
 class ContactService {
   private readonly whatsappNumber: string = '+573137374108';
   private readonly whatsappMessage: string =
-    'Hola, estoy interesado en los servicios de WolfEnterprice';
+    'Hola, estoy interesado en los servicios de WolfEnterprise';
   private readonly email: string = 'wolfenterprisedev@gmail.com';
 
   /**

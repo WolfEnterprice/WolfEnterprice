@@ -1,4 +1,4 @@
-# 🐺 WolfEnterprice - Documentación del Proyecto
+# 🐺 WolfEnterprise - Documentación del Proyecto
 
 Landing page profesional y optimizada para SEO construida con **Astro**, enfocada en desarrollo web y soluciones digitales para empresas.
 
@@ -23,7 +23,7 @@ Landing page profesional y optimizada para SEO construida con **Astro**, enfocad
 
 ## 🎯 Descripción General
 
-**WolfEnterprice** es una landing page corporativa diseñada para mostrar servicios de desarrollo web, tecnologías utilizadas, planes de precios y facilitar el contacto con clientes potenciales. El proyecto está construido con **Astro 4.0**, lo que garantiza sitios estáticos ultra rápidos y optimizados para SEO.
+**WolfEnterprise** es una landing page corporativa diseñada para mostrar servicios de desarrollo web, tecnologías utilizadas, planes de precios y facilitar el contacto con clientes potenciales. El proyecto está construido con **Astro 4.0**, lo que garantiza sitios estáticos ultra rápidos y optimizados para SEO.
 
 ### Tecnologías Principales
 
@@ -51,7 +51,7 @@ Landing page profesional y optimizada para SEO construida con **Astro**, enfocad
 ## 📁 Estructura del Proyecto
 
 ```
-WolfEnterprice/
+WolfEnterprise/
 ├── public/                          # Archivos estáticos
 │   ├── icons/
 │   │   └── logo.png                # Logo de la empresa
@@ -121,8 +121,8 @@ WolfEnterprice/
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/WolfEnterprice/WolfEnterprice.git
-   cd WolfEnterprice
+   git clone https://github.com/WolfEnterprise/WolfEnterprise.git
+   cd WolfEnterprise
    ```
 
 2. **Instalar dependencias**
@@ -360,7 +360,7 @@ getMailtoUrl(subject: string, body: string): string
 **Configuración:**
 ```typescript
 private readonly whatsappNumber: string = '+573137374108';
-private readonly email: string = 'contacto@wolfenterprice.com';
+private readonly email: string = 'contacto@wolfenterprise.com';
 ```
 
 ---
@@ -529,7 +529,7 @@ private readonly whatsappNumber: string = '+573137374108';
 **Archivo:** `src/services/contactService.ts`
 
 ```typescript
-private readonly email: string = 'contacto@wolfenterprice.com';
+private readonly email: string = 'contacto@wolfenterprise.com';
 ```
 
 ### GitHub Username
@@ -545,7 +545,7 @@ export const githubService = new GitHubService('DavidSolorza');
 **Archivo:** `src/pages/index.astro`
 
 ```typescript
-const pageTitle = 'WolfEnterprice - Desarrollo Web y Soluciones Digitales';
+const pageTitle = 'WolfEnterprise - Desarrollo Web y Soluciones Digitales';
 const pageDescription = 'Descripción para SEO...';
 ```
 
@@ -698,15 +698,15 @@ Actualmente no se requieren variables de entorno. Toda la configuración está e
 
 Para preguntas o problemas:
 
-- **Email**: contacto@wolfenterprice.com
+- **Email**: contacto@wolfenterprise.com
 - **WhatsApp**: +57 313 737 4108
-- **GitHub Issues**: [Crear un issue](https://github.com/WolfEnterprice/WolfEnterprice/issues)
+- **GitHub Issues**: [Crear un issue](https://github.com/WolfEnterprise/WolfEnterprise/issues)
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto es propiedad de **WolfEnterprice**.
+Este proyecto es propiedad de **WolfEnterprise**.
 
 ---
 

@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wolfenterprice.com',
+  site: 'https://wolfenterprise.com',
   output: 'static',
   build: {
     inlineStylesheets: 'auto',
