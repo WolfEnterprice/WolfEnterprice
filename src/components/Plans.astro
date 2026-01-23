@@ -11,6 +11,7 @@ const getPlanColor = (color: string) => {
     green: 'var(--color-plan-green)', // Verde lima
     yellow: 'var(--color-plan-yellow)', // Amarillo/dorado
     blue: 'var(--color-plan-blue)', // Azul del lobo
+    purple: 'var(--color-plan-purple)', // Púrpura
   };
   return colors[color] || colors.blue;
 };
@@ -21,30 +22,38 @@ const getPlanColor = (color: string) => {
     <div class="plans-header">
       <h2 class="section-title">Nuestros Planes</h2>
       <p class="section-subtitle">
-        Elige el plan perfecto para tu negocio. Todos nuestros planes incluyen soporte personalizado 
-        y están diseñados para hacer crecer tu presencia digital de manera efectiva. 
-        Contáctanos para conocer los precios y detalles específicos de cada plan.
+        Planes claros para crecer. Si ninguno encaja, diseñamos el tuyo.
       </p>
     </div>
-    <div class="grid grid-3 plans-grid">
+    <div class="plans-grid">
       {plans.map((plan) => (
         <div
           class={`card plan-card ${plan.popular ? 'plan-popular' : ''}`}
           style={`--plan-color: ${getPlanColor(plan.color)}`}
         >
-          {plan.popular && <div class="plan-badge">Más Popular</div>}
+          {plan.popular && <div class="plan-badge">⭐ Más Popular</div>}
           <div class="plan-header">
             <h3>{plan.name}</h3>
-            <p class="plan-description">{plan.description}</p>
+            <p class="plan-subtitle">{plan.subtitle}</p>
+            <p class="plan-description">
+              <strong>Ideal para:</strong> {plan.idealFor}
+            </p>
           </div>
-          <ul class="plan-features">
-            {plan.features.map((feature) => (
-              <li>
-                <span class="check-icon">✓</span>
-                {feature}
-              </li>
-            ))}
-          </ul>
+          <div class="plan-features-section">
+            <h4 class="plan-features-title">Incluye:</h4>
+            <ul class="plan-features">
+              {plan.features.map((feature) => (
+                <li>
+                  <span class="check-icon">✓</span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="plan-result">
+            <strong>Resultado:</strong>
+            <p>{plan.result}</p>
+          </div>
           <a href="#contacto" class="btn btn-primary plan-cta">
             {plan.cta}
           </a>
@@ -91,9 +100,13 @@ const getPlanColor = (color: string) => {
     margin-top: var(--spacing-lg);
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    align-items: stretch;
   }
 
   @media (min-width: 1024px) {
@@ -109,11 +122,11 @@ const getPlanColor = (color: string) => {
     background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(26, 42, 53, 0.95) 100%);
     border: 1px solid rgba(29, 233, 182, 0.2);
     overflow: hidden;
-    max-width: 400px;
     width: 100%;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 25px rgba(29, 233, 182, 0.1);
+    min-height: 600px;
   }
 
   @media (min-width: 1024px) {
@@ -166,34 +179,62 @@ const getPlanColor = (color: string) => {
     border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
+    z-index: 10;
+    white-space: nowrap;
   }
+
 
   .plan-header {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-md);
     border-bottom: 2px solid rgba(29, 233, 182, 0.2);
   }
 
   .plan-header h3 {
     color: var(--plan-color);
-    margin-bottom: var(--spacing-sm);
-    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    margin-bottom: var(--spacing-xs);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
   }
 
+  .plan-subtitle {
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.4;
+  }
+
   .plan-description {
     color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    margin-top: var(--spacing-xs);
+  }
+
+  .plan-description strong {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .plan-features-section {
+    flex-grow: 1;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .plan-features-title {
+    color: var(--color-text-primary);
     font-size: 0.9375rem;
-    line-height: 1.6;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    text-align: left;
   }
 
   .plan-features {
     list-style: none;
-    margin-bottom: var(--spacing-lg);
-    flex-grow: 1;
-    padding-top: var(--spacing-sm);
+    padding-top: var(--spacing-xs);
   }
 
   .plan-features li {
@@ -220,15 +261,52 @@ const getPlanColor = (color: string) => {
     filter: drop-shadow(0 0 4px rgba(29, 233, 182, 0.5));
   }
 
+  .plan-result {
+    background: rgba(29, 233, 182, 0.05);
+    border-left: 3px solid var(--plan-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-radius: 6px;
+  }
+
+  .plan-result strong {
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .plan-result p {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
   .plan-cta {
     width: 100%;
-    margin-top: var(--spacing-md);
+    margin-top: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  @media (min-width: 1024px) {
+    .plans-grid {
+      gap: var(--spacing-2xl);
+    }
+
+    .plan-card {
+      min-height: 600px;
+    }
   }
 
   @media (max-width: 1024px) {
     .plans-grid {
-      grid-template-columns: repeat(2, 1fr);
       gap: var(--spacing-lg);
+    }
+
+    .plan-card {
+      min-height: auto;
     }
   }
 
@@ -261,8 +339,25 @@ const getPlanColor = (color: string) => {
       font-size: 1.25rem;
     }
 
+    .plan-subtitle {
+      font-size: 0.8125rem;
+    }
+
     .plan-description {
+      font-size: 0.75rem;
+    }
+
+    .plan-features-title {
       font-size: 0.875rem;
+    }
+
+    .plan-result {
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .plan-result strong,
+    .plan-result p {
+      font-size: 0.8125rem;
     }
 
     .plan-features {
@@ -301,8 +396,25 @@ const getPlanColor = (color: string) => {
       font-size: 1.125rem;
     }
 
+    .plan-subtitle {
+      font-size: 0.75rem;
+    }
+
     .plan-description {
+      font-size: 0.6875rem;
+    }
+
+    .plan-features-title {
       font-size: 0.8125rem;
+    }
+
+    .plan-result {
+      padding: var(--spacing-xs);
+    }
+
+    .plan-result strong,
+    .plan-result p {
+      font-size: 0.75rem;
     }
 
     .plan-features li {

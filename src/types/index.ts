@@ -5,13 +5,15 @@
 export interface Plan {
   id: string;
   name: string;
+  subtitle: string;
   description: string;
-  price: string;
-  priceNote?: string;
+  idealFor: string;
   features: string[];
-  color: 'green' | 'yellow' | 'blue';
+  result: string;
+  color: 'green' | 'yellow' | 'blue' | 'purple';
   cta: string;
   popular?: boolean;
+  isNew?: boolean;
 }
 
 export interface Service {
