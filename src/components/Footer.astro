@@ -13,7 +13,7 @@ const currentYear = new Date().getFullYear();
     <div class="footer-content">
       <div class="footer-section footer-brand">
         <a href="/" class="footer-logo-link">
-          <img src="/icons/logo.png" alt="WolfEnterprise Logo" class="footer-logo" />
+          <img src="/icons/logo.png" alt="WolfEnterprise Logo" class="footer-logo" loading="lazy" />
         </a>
         <h3>WolfEnterprise</h3>
         <p>
@@ -85,8 +85,8 @@ const currentYear = new Date().getFullYear();
   .footer {
     background: var(--color-bg-primary);
     border-top: 1px solid rgba(29, 233, 182, 0.2);
-    padding: var(--spacing-2xl) 0 var(--spacing-lg);
-    margin-top: var(--spacing-3xl);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+    margin-top: var(--spacing-2xl);
     position: relative;
     overflow: hidden;
   }
@@ -105,8 +105,8 @@ const currentYear = new Date().getFullYear();
   .footer-content {
     display: grid;
     grid-template-columns: 2fr 1.5fr 2fr;
-    gap: var(--spacing-2xl);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
     align-items: start;
   }
 

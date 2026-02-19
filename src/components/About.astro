@@ -87,7 +87,7 @@
 
   .about-intro {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -107,21 +107,21 @@
 
   .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
     justify-items: center;
   }
 
   @media (min-width: 1024px) {
     .about-grid {
-      gap: var(--spacing-xl);
+      gap: var(--spacing-lg);
     }
   }
 
   .about-card {
     background: linear-gradient(135deg, rgba(29, 233, 182, 0.08) 0%, rgba(29, 233, 182, 0.05) 100%);
-    border-radius: 16px;
-    padding: var(--spacing-xl);
+    border-radius: 14px;
+    padding: var(--spacing-md);
     border: 1px solid rgba(29, 233, 182, 0.2);
     transition: all var(--transition-normal);
     text-align: center;
@@ -154,9 +154,9 @@
   }
 
   .about-card-icon {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto var(--spacing-md);
+    width: 48px;
+    height: 48px;
+    margin: 0 auto var(--spacing-sm);
     color: var(--color-primary);
     filter: drop-shadow(0 0 15px rgba(29, 233, 182, 0.5));
   }
@@ -168,15 +168,15 @@
 
   .about-card h3 {
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
     font-weight: var(--font-weight-semibold);
   }
 
   .about-card p {
     color: var(--color-text-tertiary);
-    line-height: 1.7;
-    font-size: 1rem;
+    line-height: 1.6;
+    font-size: 0.9375rem;
   }
 
   .about-card strong {

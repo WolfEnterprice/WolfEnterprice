@@ -54,20 +54,20 @@ const steps = processService.getProcessSteps();
 
   .process-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
     position: relative;
     z-index: 1;
   }
 
   @media (min-width: 1024px) {
     .process-header {
-      margin-bottom: var(--spacing-2xl);
+      margin-bottom: var(--spacing-lg);
     }
   }
 
   .process-steps {
-    max-width: 1100px;
-    margin: var(--spacing-lg) auto 0;
+    max-width: 1000px;
+    margin: var(--spacing-md) auto 0;
     position: relative;
     z-index: 1;
   }
@@ -91,9 +91,9 @@ const steps = processService.getProcessSteps();
 
   @media (min-width: 1024px) {
     .process-step {
-      gap: var(--spacing-xl);
-      margin-bottom: var(--spacing-xl);
-      padding: var(--spacing-lg);
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-md);
     }
   }
 

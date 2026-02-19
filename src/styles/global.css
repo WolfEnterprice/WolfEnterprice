@@ -100,8 +100,9 @@
   padding: 0;
 }
 
+/* Efecto zoom out 95% - 16 * 0.95 = 15.2px */
 html {
-  font-size: 16px;
+  font-size: 15.2px;
   scroll-behavior: smooth;
 }
 
@@ -196,21 +197,38 @@ a:hover {
   }
 }
 
-/* Secciones - Mobile First - Espaciado moderado y profesional */
+/* Secciones - Mobile First - Espaciado compacto y profesional */
+/* z-index ascendente para apilamiento correcto al hacer scroll (evita superposición) */
 .section {
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-lg) 0;
   position: relative;
+  isolation: isolate;
+}
+
+#hero { z-index: 1; }
+#nosotros { z-index: 2; }
+#servicios { z-index: 3; }
+#planes { z-index: 4; }
+#tecnologias { z-index: 5; }
+#proceso { z-index: 6; }
+#equipo { z-index: 7; }
+#contacto { z-index: 8; }
+
+.footer {
+  position: relative;
+  z-index: 9;
+  isolation: isolate;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-xl) 0;
   }
 }
 
 @media (min-width: 1024px) {
   .section {
-    padding: var(--spacing-3xl) 0;
+    padding: var(--spacing-2xl) 0;
   }
 }
 
@@ -230,7 +248,7 @@ a:hover {
 
 @media (min-width: 768px) {
   .section-title {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
   }
 }
 
@@ -260,9 +278,9 @@ a:hover {
 
 @media (min-width: 768px) {
   .section-subtitle {
-    font-size: clamp(1rem, 2vw, 1.1875rem);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-xl);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.65;
+    margin-bottom: var(--spacing-lg);
     padding: 0;
   }
 }
@@ -334,16 +352,15 @@ a:hover {
   box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
 }
 
-/* Cards mejoradas y centradas - Más claridad y animaciones */
+/* Cards - Compactas y optimizadas para rendimiento */
 .card {
   background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(26, 42, 53, 0.95) 100%);
-  border-radius: 20px;
-  padding: var(--spacing-2xl);
-  border: 1px solid rgba(29, 233, 182, 0.25);
-  transition: all var(--transition-normal);
-  backdrop-filter: blur(10px);
-  will-change: transform;
-  box-shadow: 0 4px 25px rgba(29, 233, 182, 0.15), 0 0 0 1px rgba(29, 233, 182, 0.1);
+  border-radius: 16px;
+  padding: var(--spacing-lg);
+  border: 1px solid rgba(29, 233, 182, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(29, 233, 182, 0.1);
   position: relative;
   overflow: hidden;
   max-width: 100%;
@@ -369,17 +386,16 @@ a:hover {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(29, 233, 182, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(29, 233, 182, 0.08) 0%, transparent 70%);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition: width 0.25s ease, height 0.25s ease;
   pointer-events: none;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.01);
-  border-color: rgba(29, 233, 182, 0.5);
-  background: linear-gradient(135deg, var(--color-bg-card-hover) 0%, rgba(34, 58, 74, 0.95) 100%);
-  box-shadow: 0 25px 50px rgba(29, 233, 182, 0.3), 0 0 0 1px rgba(29, 233, 182, 0.2);
+  transform: translateY(-4px);
+  border-color: rgba(29, 233, 182, 0.4);
+  box-shadow: 0 12px 35px rgba(29, 233, 182, 0.2);
 }
 
 .card:hover::before {
@@ -387,8 +403,8 @@ a:hover {
 }
 
 .card:hover::after {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
 
 /* Grid */
@@ -423,8 +439,8 @@ a:hover {
   width: 100%;
   max-width: 100%;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 .grid > .card.animated {

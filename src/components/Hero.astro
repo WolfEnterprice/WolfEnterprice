@@ -16,7 +16,7 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
   <div class="container">
     <div class="hero-wrapper">
       <div class="hero-logo">
-        <img src="/icons/logo.png" alt="WolfEnterprise Logo" class="hero-logo-img" />
+        <img src="/icons/logo.png" alt="WolfEnterprise Logo" class="hero-logo-img" fetchpriority="high" />
       </div>
       <div class="hero-content">
         <div class="hero-badge">
@@ -94,10 +94,10 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
   }
 
   @media (min-width: 768px) {
-    .hero {
-      padding: var(--spacing-3xl) 0;
-      min-height: 85vh;
-    }
+  .hero {
+    padding: var(--spacing-2xl) 0;
+    min-height: 65vh;
+  }
   }
 
 
@@ -216,8 +216,8 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
 
   @media (min-width: 1024px) {
     .hero-wrapper {
-      grid-template-columns: 420px 1fr;
-      gap: var(--spacing-3xl);
+      grid-template-columns: 360px 1fr;
+      gap: var(--spacing-2xl);
       align-items: center;
     }
   }
@@ -251,7 +251,7 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
 
   @media (min-width: 1024px) {
     .hero-logo-img {
-      max-width: 380px;
+      max-width: 320px;
     }
   }
 
@@ -280,14 +280,14 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
 
   .hero-badge {
     display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
     background: rgba(29, 233, 182, 0.12);
     border: 1px solid rgba(29, 233, 182, 0.3);
     border-radius: 50px;
     color: var(--color-primary);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     position: relative;
@@ -311,8 +311,8 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
 
 
   .hero-title {
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    margin-bottom: var(--spacing-md);
+    font-size: clamp(2rem, 4.5vw, 2.85rem);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.2;
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.02em;
@@ -324,7 +324,7 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
 
   @media (min-width: 1024px) {
     .hero-title {
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
     }
   }
 
@@ -348,10 +348,10 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
   }
 
   .hero-subtitle {
-    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-size: clamp(1rem, 1.8vw, 1.0625rem);
     color: var(--color-text-secondary);
     margin-top: 0;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     line-height: 1.65;
     max-width: 100%;
     font-weight: var(--font-weight-normal);
@@ -361,7 +361,7 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
   @media (min-width: 1024px) {
     .hero-subtitle {
       text-align: left;
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
     }
   }
 
@@ -370,15 +370,15 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
     gap: var(--spacing-sm);
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     width: 100%;
   }
 
   @media (min-width: 1024px) {
     .hero-cta {
       justify-content: flex-start;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
     }
   }
 
@@ -569,10 +569,10 @@ const whatsappUrl = contactService.getWhatsAppUrl('Hola, quiero solicitar una co
 
   .hero-tagline {
     color: var(--color-text-muted);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: var(--font-weight-medium);
     font-style: italic;
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-md);
     margin-bottom: 0;
     position: relative;
     display: inline-block;

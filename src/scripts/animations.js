@@ -27,12 +27,11 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        // Delay escalonado para efecto cascada
         setTimeout(() => {
           entry.target.classList.add('animated');
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
-        }, index * 100);
+        }, Math.min(index * 50, 150));
         
         observer.unobserve(entry.target);
       }
@@ -42,8 +41,8 @@
   // Observar elementos
   animationElements.forEach((el) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.35s ease-out, transform 0.35s ease-out';
     observer.observe(el);
   });
 

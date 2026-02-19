@@ -68,6 +68,23 @@ class PlanService {
         cta: 'Contactar ventas',
       },
       {
+        id: 'impulso-mobile',
+        name: 'Plan Impulso Mobile',
+        subtitle: 'Transforma tu negocio con una aplicación móvil profesional y escalable.',
+        description: 'Ideal para negocios que buscan llegar a sus clientes a través de apps nativas.',
+        idealFor: 'Negocios que buscan presencia en dispositivos móviles y mayor engagement.',
+        features: [
+          'Android & iOS',
+          'Notificaciones push',
+          'Integración con sistema web',
+          'Publicación en tiendas (App Store y Google Play)',
+          'Soporte y mantenimiento incluido',
+        ],
+        result: 'Tu negocio en el bolsillo de tus clientes, disponible 24/7.',
+        color: 'purple',
+        cta: 'Solicitar cotización',
+      },
+      {
         id: 'personalizado',
         name: 'Plan Personalizado',
         subtitle: 'Diseñado específicamente para tu negocio',

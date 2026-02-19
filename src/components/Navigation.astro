@@ -167,13 +167,15 @@
   .navigation {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 9990;
     background: rgba(10, 10, 15, 0.7);
     backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid rgba(29, 233, 182, 0.15);
     padding: var(--spacing-md) 0;
     transition: all var(--transition-normal);
-    overflow: hidden;
+    overflow: visible;
+    isolation: isolate;
   }
 
   .navigation::before {
@@ -223,6 +225,8 @@
     align-items: center;
     position: relative;
     z-index: 1;
+    min-height: 48px;
+    gap: var(--spacing-md);
   }
 
   @media (max-width: 768px) {
@@ -234,9 +238,10 @@
   .nav-logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     text-decoration: none;
     transition: transform var(--transition-fast);
+    flex-shrink: 0;
   }
 
   .nav-logo:hover {
@@ -244,8 +249,10 @@
   }
 
   .nav-logo-icon {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -254,7 +261,8 @@
     padding: 0;
     box-shadow: none;
     transition: all var(--transition-normal);
-    overflow: visible;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
   .nav-logo:hover .nav-logo-icon {
@@ -266,18 +274,23 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: center;
     border-radius: 0;
     background: transparent;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    display: block;
+    vertical-align: middle;
   }
 
   .nav-logo-text {
-    font-size: 1.375rem;
+    font-size: 1.25rem;
     color: var(--color-text-primary);
     font-weight: var(--font-weight-bold);
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 2px;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
   .nav-logo-text strong {
@@ -422,8 +435,10 @@
     }
 
     .nav-logo-icon {
-      width: 50px;
-      height: 50px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
     }
 
   .nav-links {
